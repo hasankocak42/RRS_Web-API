@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HastaneDBModelStoreContainer" CdmEntityContainer="HastaneDBEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="HastaneDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Admin">
+      <EntityTypeMapping TypeName="HastaneDBModel.tbl_Admin">
+        <MappingFragment StoreEntitySet="tbl_Admin">
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="Tckn" ColumnName="Tckn" />
+          <ScalarProperty Name="AdminUserName" ColumnName="AdminUserName" />
+          <ScalarProperty Name="AdminPassword" ColumnName="AdminPassword" />
+          <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+          <ScalarProperty Name="AdminSurname" ColumnName="AdminSurname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Appointment">
+      <EntityTypeMapping TypeName="HastaneDBModel.tbl_Appointment">
+        <MappingFragment StoreEntitySet="tbl_Appointment">
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Date">
+      <EntityTypeMapping TypeName="HastaneDBModel.tbl_Date">
+        <MappingFragment StoreEntitySet="tbl_Date">
+          <ScalarProperty Name="DateID" ColumnName="DateID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Department">
+      <EntityTypeMapping TypeName="HastaneDBModel.tbl_Department">
+        <MappingFragment StoreEntitySet="tbl_Department">
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Departmentss">
+      <EntityTypeMapping TypeName="HastaneDBModel.tbl_Departmentss">
+        <MappingFragment StoreEntitySet="tbl_Departmentss">
+          <ScalarProperty Name="DepartmentssID" ColumnName="DepartmentssID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="HospitalID" ColumnName="HospitalID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Doctor">
+      <EntityTypeMapping TypeName="HastaneDBModel.tbl_Doctor">
+        <MappingFragment StoreEntitySet="tbl_Doctor">
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="Tckn" ColumnName="Tckn" />
+          <ScalarProperty Name="DoctorPassword" ColumnName="DoctorPassword" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="Maas" ColumnName="Maas" />
+          <ScalarProperty Name="HospitalID" ColumnName="HospitalID" />
+          <ScalarProperty Name="DoctorPopNo" ColumnName="DoctorPopNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Favorite">
+      <EntityTypeMapping TypeName="HastaneDBModel.tbl_Favorite">
+        <MappingFragment StoreEntitySet="tbl_Favorite">
+          <ScalarProperty Name="FavoriteID" ColumnName="FavoriteID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Hospital">
+      <EntityTypeMapping TypeName="HastaneDBModel.tbl_Hospital">
+        <MappingFragment StoreEntitySet="tbl_Hospital">
+          <ScalarProperty Name="HospitalID" ColumnName="HospitalID" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_HospitalManager">
+      <EntityTypeMapping TypeName="HastaneDBModel.tbl_HospitalManager">
+        <MappingFragment StoreEntitySet="tbl_HospitalManager">
+          <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+          <ScalarProperty Name="Tckn" ColumnName="Tckn" />
+          <ScalarProperty Name="ManagerUserName" ColumnName="ManagerUserName" />
+          <ScalarProperty Name="ManagerPassword" ColumnName="ManagerPassword" />
+          <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+          <ScalarProperty Name="ManagerSurname" ColumnName="ManagerSurname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Hour">
+      <EntityTypeMapping TypeName="HastaneDBModel.tbl_Hour">
+        <MappingFragment StoreEntitySet="tbl_Hour">
+          <ScalarProperty Name="HourID" ColumnName="HourID" />
+          <ScalarProperty Name="Hour" ColumnName="Hour" />
+          <ScalarProperty Name="DateID" ColumnName="DateID" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Patient">
+      <EntityTypeMapping TypeName="HastaneDBModel.tbl_Patient">
+        <MappingFragment StoreEntitySet="tbl_Patient">
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="Tckn" ColumnName="Tckn" />
+          <ScalarProperty Name="PatientPassword" ColumnName="PatientPassword" />
+          <ScalarProperty Name="PaitentName" ColumnName="PaitentName" />
+          <ScalarProperty Name="PaitentSurname" ColumnName="PaitentSurname" />
+          <ScalarProperty Name="PaitentMail" ColumnName="PaitentMail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="addFavoriteDoctor" FunctionName="HastaneDBModel.Store.addFavoriteDoctor" />
+    <FunctionImportMapping FunctionImportName="DoctorSignIn" FunctionName="HastaneDBModel.Store.DoctorSignIn" />
+    <FunctionImportMapping FunctionImportName="DoctorUpdateInformation" FunctionName="HastaneDBModel.Store.DoctorUpdateInformation" />
+    <FunctionImportMapping FunctionImportName="GetAnAppointment" FunctionName="HastaneDBModel.Store.GetAnAppointment" />
+    <FunctionImportMapping FunctionImportName="MaasHesaplaa" FunctionName="HastaneDBModel.Store.MaasHesaplaa" />
+    <FunctionImportMapping FunctionImportName="PaitentUpdateInformation" FunctionName="HastaneDBModel.Store.PaitentUpdateInformation" />
+    <FunctionImportMapping FunctionImportName="PatientSignIn" FunctionName="HastaneDBModel.Store.PatientSignIn" />
+    <FunctionImportMapping FunctionImportName="Register" FunctionName="HastaneDBModel.Store.Register" />
+    <FunctionImportMapping FunctionImportName="RemoveAppointment" FunctionName="HastaneDBModel.Store.RemoveAppointment" />
+    <FunctionImportMapping FunctionImportName="SearchDepartment" FunctionName="HastaneDBModel.Store.SearchDepartment" />
+    <FunctionImportMapping FunctionImportName="SearchDoctor" FunctionName="HastaneDBModel.Store.SearchDoctor" />
+    <FunctionImportMapping FunctionImportName="SearchHospital" FunctionName="HastaneDBModel.Store.SearchHospital">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HastaneDBModel.SearchHospital_Result">
+          <ScalarProperty Name="HospitalID" ColumnName="HospitalID" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="HastaneDBModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="HastaneDBModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="HastaneDBModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="HastaneDBModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="HastaneDBModel.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="HastaneDBModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="HastaneDBModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="UpdateDepartment" FunctionName="HastaneDBModel.Store.UpdateDepartment" />
+    <FunctionImportMapping FunctionImportName="UpdateDoctor" FunctionName="HastaneDBModel.Store.UpdateDoctor" />
+    <FunctionImportMapping FunctionImportName="UpdateHospital" FunctionName="HastaneDBModel.Store.UpdateHospital" />
+  </EntityContainerMapping>
+</Mapping>

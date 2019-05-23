@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HastaneDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tckn" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AdminUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AdminPassword" Type="text" Nullable="false" />
+    <Property Name="AdminName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AdminSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Appointment">
+    <Key>
+      <PropertyRef Name="AppointmentID" />
+    </Key>
+    <Property Name="AppointmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AppointmentDate" Type="date" Nullable="false" />
+    <Property Name="AppointmentTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="PatientID" Type="int" Nullable="false" />
+    <Property Name="DoctorID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Date">
+    <Key>
+      <PropertyRef Name="DateID" />
+    </Key>
+    <Property Name="DateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_Department">
+    <Key>
+      <PropertyRef Name="DepartmentID" />
+    </Key>
+    <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Departmentss">
+    <Key>
+      <PropertyRef Name="DepartmentssID" />
+    </Key>
+    <Property Name="DepartmentssID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentID" Type="int" Nullable="false" />
+    <Property Name="HospitalID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Doctor">
+    <Key>
+      <PropertyRef Name="DoctorID" />
+    </Key>
+    <Property Name="DoctorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tckn" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DoctorPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DoctorName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DoctorSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DepartmentID" Type="int" Nullable="false" />
+    <Property Name="Maas" Type="money" />
+    <Property Name="HospitalID" Type="int" Nullable="false" />
+    <Property Name="DoctorPopNo" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Favorite">
+    <Key>
+      <PropertyRef Name="FavoriteID" />
+    </Key>
+    <Property Name="FavoriteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DoctorID" Type="int" Nullable="false" />
+    <Property Name="PatientID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Hospital">
+    <Key>
+      <PropertyRef Name="HospitalID" />
+    </Key>
+    <Property Name="HospitalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HospitalName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_HospitalManager">
+    <Key>
+      <PropertyRef Name="ManagerID" />
+    </Key>
+    <Property Name="ManagerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tckn" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ManagerUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ManagerPassword" Type="text" Nullable="false" />
+    <Property Name="ManagerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ManagerSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Hour">
+    <Key>
+      <PropertyRef Name="HourID" />
+    </Key>
+    <Property Name="HourID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hour" Type="time" Precision="7" Nullable="false" />
+    <Property Name="DateID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Patient">
+    <Key>
+      <PropertyRef Name="PatientID" />
+    </Key>
+    <Property Name="PatientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tckn" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PatientPassword" Type="text" Nullable="false" />
+    <Property Name="PaitentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PaitentSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PaitentMail" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tbl_Departmentss_tbl_Department">
+    <End Role="tbl_Department" Type="Self.tbl_Department" Multiplicity="1" />
+    <End Role="tbl_Departmentss" Type="Self.tbl_Departmentss" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Department">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="tbl_Departmentss">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Departmentss_tbl_Hospital">
+    <End Role="tbl_Hospital" Type="Self.tbl_Hospital" Multiplicity="1" />
+    <End Role="tbl_Departmentss" Type="Self.tbl_Departmentss" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Hospital">
+        <PropertyRef Name="HospitalID" />
+      </Principal>
+      <Dependent Role="tbl_Departmentss">
+        <PropertyRef Name="HospitalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Hour_tbl_Date">
+    <End Role="tbl_Date" Type="Self.tbl_Date" Multiplicity="1" />
+    <End Role="tbl_Hour" Type="Self.tbl_Hour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Date">
+        <PropertyRef Name="DateID" />
+      </Principal>
+      <Dependent Role="tbl_Hour">
+        <PropertyRef Name="DateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="addFavoriteDoctor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PatientID" Type="int" Mode="In" />
+    <Parameter Name="DoctorID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DoctorSignIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Tckn" Type="nchar" Mode="In" />
+    <Parameter Name="DoctorPassword" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="DoctorUpdateInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DoctorID" Type="int" Mode="In" />
+    <Parameter Name="Tckn" Type="nchar" Mode="In" />
+    <Parameter Name="DoctorPassword" Type="nchar" Mode="In" />
+    <Parameter Name="DoctorName" Type="nchar" Mode="In" />
+    <Parameter Name="DoctorSurname" Type="nchar" Mode="In" />
+    <Parameter Name="DepartmentID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="GetAnAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PatientId" Type="int" Mode="In" />
+    <Parameter Name="DoctorId" Type="int" Mode="In" />
+    <Parameter Name="AppointmentDate" Type="date" Mode="In" />
+    <Parameter Name="AppointmentTime" Type="time" Mode="In" />
+  </Function>
+  <Function Name="MaasHesaplaa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PaitentUpdateInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PatientID" Type="int" Mode="In" />
+    <Parameter Name="Tckn" Type="nchar" Mode="In" />
+    <Parameter Name="PatientPassword" Type="nchar" Mode="In" />
+    <Parameter Name="PaitentName" Type="nchar" Mode="In" />
+    <Parameter Name="PaitentSurname" Type="nchar" Mode="In" />
+    <Parameter Name="PaitentMail" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="PatientSignIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Tckn" Type="nchar" Mode="In" />
+    <Parameter Name="PatientPassword" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="Register" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Tckn" Type="nchar" Mode="In" />
+    <Parameter Name="PatientPassword" Type="nchar" Mode="In" />
+    <Parameter Name="name" Type="nchar" Mode="In" />
+    <Parameter Name="surname" Type="nchar" Mode="In" />
+    <Parameter Name="mail" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="RemoveAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AppointmentID" Type="int" Mode="In" />
+    <Parameter Name="doctorID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SearchDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DepartmentName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SearchDoctor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DoctorName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SearchHospital" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="HospitalName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="UpdateDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DepartmentName" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepartmentID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UpdateDoctor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Tckn" Type="nchar" Mode="In" />
+    <Parameter Name="DoctorPassword" Type="text" Mode="In" />
+    <Parameter Name="DoctorName" Type="nchar" Mode="In" />
+    <Parameter Name="DoctorSurname" Type="nchar" Mode="In" />
+    <Parameter Name="DoctorID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UpdateHospital" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="HospitalName" Type="nvarchar" Mode="In" />
+    <Parameter Name="HospitalID" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="HastaneDBModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Appointment" EntityType="Self.tbl_Appointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Date" EntityType="Self.tbl_Date" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Department" EntityType="Self.tbl_Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Departmentss" EntityType="Self.tbl_Departmentss" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Doctor" EntityType="Self.tbl_Doctor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Favorite" EntityType="Self.tbl_Favorite" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Hospital" EntityType="Self.tbl_Hospital" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_HospitalManager" EntityType="Self.tbl_HospitalManager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Hour" EntityType="Self.tbl_Hour" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Patient" EntityType="Self.tbl_Patient" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbl_Departmentss_tbl_Department" Association="Self.FK_tbl_Departmentss_tbl_Department">
+      <End Role="tbl_Department" EntitySet="tbl_Department" />
+      <End Role="tbl_Departmentss" EntitySet="tbl_Departmentss" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Departmentss_tbl_Hospital" Association="Self.FK_tbl_Departmentss_tbl_Hospital">
+      <End Role="tbl_Hospital" EntitySet="tbl_Hospital" />
+      <End Role="tbl_Departmentss" EntitySet="tbl_Departmentss" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Hour_tbl_Date" Association="Self.FK_tbl_Hour_tbl_Date">
+      <End Role="tbl_Date" EntitySet="tbl_Date" />
+      <End Role="tbl_Hour" EntitySet="tbl_Hour" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
