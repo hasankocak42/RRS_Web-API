@@ -9,8 +9,11 @@ using System.Web.Http.Cors;
 namespace RRS.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/Update")]
     public class RemoveController : ApiController
     {
+        [Route("Doctor")]
+        [HttpGet]
         public HttpResponseMessage Delete(int DoctorID)
         {
             try
@@ -35,6 +38,8 @@ namespace RRS.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
         }
+        [Route("Patient")]
+        [HttpGet]
         public HttpResponseMessage DeletePatient(int PatientID)
         {
             try
@@ -59,7 +64,8 @@ namespace RRS.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
         }
-
+        [Route("Manager")]
+        [HttpGet]
         public HttpResponseMessage DeleteManager(int ManagerID)
         {
             try
@@ -84,7 +90,8 @@ namespace RRS.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
         }
-
+        [Route("Depatment")]
+        [HttpGet]
         public HttpResponseMessage DeleteDepartment(int DepartmentID)
         {
             try
@@ -110,7 +117,8 @@ namespace RRS.Controllers
             }
         }
 
-
+        [Route("Hospital")]
+        [HttpGet]
         public HttpResponseMessage DeleteHospital(int HospitalID)
         {
             try
@@ -135,7 +143,8 @@ namespace RRS.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
         }
-
+        [Route("departmentss")]
+        [HttpGet]
         public HttpResponseMessage Delete(tbl_Departmentss departments)
         {
             try
@@ -162,7 +171,8 @@ namespace RRS.Controllers
 
 
         }
-
+        [Route("favori")]
+        [HttpGet]
         public HttpResponseMessage Delete(tbl_Favorite favori)
         {
             try

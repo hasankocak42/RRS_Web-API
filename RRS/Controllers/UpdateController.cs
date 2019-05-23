@@ -8,9 +8,12 @@ using System.Web.Http.Cors;
 
 namespace RRS.Controllers
 {
+    [RoutePrefix("api/Update")]
     public class UpdateController : ApiController
     {
         [EnableCors(origins: "*", headers: "*", methods: "*")]
+        [Route("Doctor")]
+        [HttpGet]
         public HttpResponseMessage Put(tbl_Doctor doctor)
         {
             try
@@ -44,7 +47,8 @@ namespace RRS.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
         }
-
+        [Route("patient")]
+        [HttpGet]
         public HttpResponseMessage Put(tbl_Patient patient)
         {
             try
@@ -78,7 +82,8 @@ namespace RRS.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
         }
-
+        [Route("manager")]
+        [HttpGet]
         public HttpResponseMessage Put(tbl_HospitalManager manager)
         {
             try
@@ -114,7 +119,8 @@ namespace RRS.Controllers
         }
 
 
-
+        [Route("department")]
+        [HttpGet]
         public HttpResponseMessage Put(tbl_Department  department)
         {
             try
@@ -148,7 +154,8 @@ namespace RRS.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
         }
-
+        [Route("hospital")]
+        [HttpGet]
         public HttpResponseMessage Put(tbl_Hospital hospital)
         {
             try
