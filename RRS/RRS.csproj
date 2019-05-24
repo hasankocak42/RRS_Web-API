@@ -197,6 +197,9 @@
     </Compile>
     <Compile Include="Department.cs" />
     <Compile Include="Doctor.cs" />
+    <Compile Include="favoriList_Result.cs">
+      <DependentUpon>HastaneDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -217,6 +220,9 @@
     </Compile>
     <Compile Include="Hospital.cs" />
     <Compile Include="HospitalList_Result.cs">
+      <DependentUpon>HastaneDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaasList_Result.cs">
       <DependentUpon>HastaneDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Manager.cs" />

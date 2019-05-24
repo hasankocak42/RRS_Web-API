@@ -191,6 +191,16 @@ namespace RRS.Controllers
         }
 
 
+        [Route("Maas")]
+        [HttpGet]
+        public void GetMaas()
+        {
+            using (var db = new HastaneDBEntities())
+            {
+                db.MaasHesaplaa();
+            }
+        }
+
 
     }
     }

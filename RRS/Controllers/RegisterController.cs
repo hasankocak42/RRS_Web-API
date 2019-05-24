@@ -169,7 +169,7 @@ namespace RRS.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
-        [Route("departman")]
+        [Route("FavoriEkle")]
         [HttpPost]
         public HttpResponseMessage Post(tbl_Favorite favori)
         {
@@ -184,7 +184,7 @@ namespace RRS.Controllers
                 }
                 else
                 {
-                    db.tbl_Favorite.Add(favori);
+                    db.addFavoriteDoctor(favori.PatientID, favori.DoctorID);
                     db.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, favori);
                 }
@@ -194,6 +194,9 @@ namespace RRS.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
+
+
+
         }
 
     }

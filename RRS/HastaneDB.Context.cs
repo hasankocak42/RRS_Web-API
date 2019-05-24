@@ -322,5 +322,19 @@ namespace RRS
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateHospital", hospitalNameParameter, hospitalIDParameter);
         }
+    
+        public virtual ObjectResult<favoriList_Result> favoriList(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<favoriList_Result>("favoriList", idParameter);
+        }
+    
+        public virtual ObjectResult<MaasList_Result> MaasList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MaasList_Result>("MaasList");
+        }
     }
 }

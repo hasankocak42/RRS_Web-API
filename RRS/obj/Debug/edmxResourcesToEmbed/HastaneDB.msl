@@ -222,5 +222,27 @@
     <FunctionImportMapping FunctionImportName="UpdateDepartment" FunctionName="HastaneDBModel.Store.UpdateDepartment" />
     <FunctionImportMapping FunctionImportName="UpdateDoctor" FunctionName="HastaneDBModel.Store.UpdateDoctor" />
     <FunctionImportMapping FunctionImportName="UpdateHospital" FunctionName="HastaneDBModel.Store.UpdateHospital" />
+    <FunctionImportMapping FunctionImportName="favoriList" FunctionName="HastaneDBModel.Store.favoriList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HastaneDBModel.favoriList_Result">
+          <ScalarProperty Name="FavoriteID" ColumnName="FavoriteID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="MaasList" FunctionName="HastaneDBModel.Store.MaasList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HastaneDBModel.MaasList_Result">
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+          <ScalarProperty Name="Maas" ColumnName="Maas" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -218,6 +218,10 @@
       <Parameter Name="HospitalName" Mode="In" Type="String" />
       <Parameter Name="HospitalID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="favoriList" ReturnType="Collection(HastaneDBModel.favoriList_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MaasList" ReturnType="Collection(HastaneDBModel.MaasList_Result)" />
   </EntityContainer>
   <ComplexType Name="AppointmentAfter_Result">
     <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
@@ -280,5 +284,19 @@
   <ComplexType Name="SearchHospital_Result">
     <Property Type="Int32" Name="HospitalID" Nullable="false" />
     <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="favoriList_Result">
+    <Property Type="Int32" Name="FavoriteID" Nullable="false" />
+    <Property Type="Int32" Name="DoctorID" Nullable="false" />
+    <Property Type="Int32" Name="PatientID" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="MaasList_Result">
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="Maas" Nullable="true" Precision="19" />
   </ComplexType>
 </Schema>

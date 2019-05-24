@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HastaneDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HastaneDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_Admin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -152,6 +152,9 @@
           <Parameter Name="DoctorSurname" Type="nchar" Mode="In" />
           <Parameter Name="DepartmentID" Type="int" Mode="In" />
         </Function>
+        <Function Name="favoriList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetAnAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PatientId" Type="int" Mode="In" />
           <Parameter Name="DoctorId" Type="int" Mode="In" />
@@ -160,6 +163,7 @@
         </Function>
         <Function Name="HospitalList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MaasHesaplaa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaasList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="PaitentUpdateInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PatientID" Type="int" Mode="In" />
           <Parameter Name="Tckn" Type="nchar" Mode="In" />
@@ -222,8 +226,7 @@
             <End Role="tbl_Departmentss" EntitySet="tbl_Departmentss" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HastaneDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -366,19 +369,19 @@
             <Parameter Name="DoctorID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AppointmentAfter" ReturnType="Collection(HastaneDBModel.AppointmentAfter_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AppointmentAfterdoctor" ReturnType="Collection(HastaneDBModel.AppointmentAfterdoctor_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AppointmentBefore" ReturnType="Collection(HastaneDBModel.AppointmentBefore_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AppointmentBeforedoctor" ReturnType="Collection(HastaneDBModel.AppointmentBeforedoctor_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DepartmenList" ReturnType="Collection(HastaneDBModel.DepartmenList_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DoctorSignIn" ReturnType="Collection(Int32)">
             <Parameter Name="Tckn" Mode="In" Type="String" />
@@ -428,7 +431,7 @@
             <Parameter Name="doctorID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SearchHospital" ReturnType="Collection(HastaneDBModel.SearchHospital_Result)">
-            <Parameter Name="HospitalName" Mode="In" Type="String" />
+          <Parameter Name="HospitalName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UpdateDepartment">
             <Parameter Name="DepartmentName" Mode="In" Type="String" />
@@ -445,6 +448,10 @@
             <Parameter Name="HospitalName" Mode="In" Type="String" />
             <Parameter Name="HospitalID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="favoriList" ReturnType="Collection(HastaneDBModel.favoriList_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MaasList" ReturnType="Collection(HastaneDBModel.MaasList_Result)" />
         </EntityContainer>
         <ComplexType Name="AppointmentAfter_Result">
           <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
@@ -507,6 +514,20 @@
         <ComplexType Name="SearchHospital_Result">
           <Property Type="Int32" Name="HospitalID" Nullable="false" />
           <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="favoriList_Result">
+          <Property Type="Int32" Name="FavoriteID" Nullable="false" />
+          <Property Type="Int32" Name="DoctorID" Nullable="false" />
+          <Property Type="Int32" Name="PatientID" Nullable="false" />
+          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="MaasList_Result">
+          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Maas" Nullable="true" Precision="19" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -735,6 +756,28 @@
           <FunctionImportMapping FunctionImportName="UpdateDepartment" FunctionName="HastaneDBModel.Store.UpdateDepartment" />
           <FunctionImportMapping FunctionImportName="UpdateDoctor" FunctionName="HastaneDBModel.Store.UpdateDoctor" />
           <FunctionImportMapping FunctionImportName="UpdateHospital" FunctionName="HastaneDBModel.Store.UpdateHospital" />
+          <FunctionImportMapping FunctionImportName="favoriList" FunctionName="HastaneDBModel.Store.favoriList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HastaneDBModel.favoriList_Result">
+                <ScalarProperty Name="FavoriteID" ColumnName="FavoriteID" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MaasList" FunctionName="HastaneDBModel.Store.MaasList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HastaneDBModel.MaasList_Result">
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+                <ScalarProperty Name="Maas" ColumnName="Maas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

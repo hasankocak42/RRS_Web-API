@@ -147,6 +147,9 @@
     <Parameter Name="DoctorSurname" Type="nchar" Mode="In" />
     <Parameter Name="DepartmentID" Type="int" Mode="In" />
   </Function>
+  <Function Name="favoriList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
   <Function Name="GetAnAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PatientId" Type="int" Mode="In" />
     <Parameter Name="DoctorId" Type="int" Mode="In" />
@@ -155,6 +158,7 @@
   </Function>
   <Function Name="HospitalList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="MaasHesaplaa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="MaasList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="PaitentUpdateInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PatientID" Type="int" Mode="In" />
     <Parameter Name="Tckn" Type="nchar" Mode="In" />

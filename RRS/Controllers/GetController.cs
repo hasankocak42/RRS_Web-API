@@ -187,6 +187,41 @@ namespace RRS.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
+        [Route("Randevuler")]
+        [HttpPost]
+        public HttpResponseMessage PostRandevu(Id id)
+        {
+            try
+            {
+                using (var db = new HastaneDBEntities())
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, db.favoriList(id.id).ToList());
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+        }
+        [Route("Maaslar")]
+        [HttpGet]
+        public HttpResponseMessage GetMaas()
+        {
+            try
+            {
+                using (var db = new HastaneDBEntities())
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, db.MaasList().ToList());
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
         public class saat
         {
             public int id;

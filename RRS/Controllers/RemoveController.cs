@@ -204,12 +204,36 @@ namespace RRS.Controllers
 
         }
 
+        [Route("RandevuSil")]
+        [HttpPost]
+        public HttpResponseMessage DeleteRandevu(randevu ran)
+        {
+            try
+            {
+                using (var db = new HastaneDBEntities())
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, db.RemoveAppointment(ran.id, ran.Did));
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+
 
         public class İd
         {
             public int id;
         }
-
+        public class randevu
+        {
+            public int id { get; set; }
+            public int Did { get; set; }
+        }
 
     }
     }
