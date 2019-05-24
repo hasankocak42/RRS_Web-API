@@ -44,7 +44,7 @@ namespace RRS.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
         [Route("patient")]
@@ -79,7 +79,7 @@ namespace RRS.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
         [Route("manager")]
@@ -114,7 +114,7 @@ namespace RRS.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
 
@@ -151,7 +151,7 @@ namespace RRS.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
         [Route("hospital")]
@@ -186,7 +186,7 @@ namespace RRS.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
 

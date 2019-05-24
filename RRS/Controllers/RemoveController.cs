@@ -9,20 +9,20 @@ using System.Web.Http.Cors;
 namespace RRS.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [RoutePrefix("api/Update")]
+    [RoutePrefix("api/remove")]
     public class RemoveController : ApiController
     {
         [Route("Doctor")]
-        [HttpGet]
-        public HttpResponseMessage Delete(int DoctorID)
+        [HttpDelete]
+        public HttpResponseMessage Delete(İd id)
         {
             try
             {
                 using (var db = new HastaneDBEntities())
                 {
-                    if (db.tbl_Doctor.FirstOrDefault(x => x.DoctorID == DoctorID) != null)
+                    if (db.tbl_Doctor.FirstOrDefault(x => x.DoctorID == id.id) != null)
                     {
-                        db.tbl_Doctor.Remove(db.tbl_Doctor.FirstOrDefault(x => x.DoctorID == DoctorID));
+                        db.tbl_Doctor.Remove(db.tbl_Doctor.FirstOrDefault(x => x.DoctorID == id.id));
                         db.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, "silindi");
                     }
@@ -35,20 +35,20 @@ namespace RRS.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
         [Route("Patient")]
-        [HttpGet]
-        public HttpResponseMessage DeletePatient(int PatientID)
+        [HttpDelete]
+        public HttpResponseMessage DeletePatient(İd id)
         {
             try
             {
                 using (var db = new HastaneDBEntities())
                 {
-                    if (db.tbl_Patient.FirstOrDefault(x => x.PatientID == PatientID) != null)
+                    if (db.tbl_Patient.FirstOrDefault(x => x.PatientID == id.id) != null)
                     {
-                        db.tbl_Patient.Remove(db.tbl_Patient.FirstOrDefault(x => x.PatientID == PatientID));
+                        db.tbl_Patient.Remove(db.tbl_Patient.FirstOrDefault(x => x.PatientID == id.id));
                         db.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, "silindi");
                     }
@@ -61,20 +61,21 @@ namespace RRS.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
         [Route("Manager")]
-        [HttpGet]
-        public HttpResponseMessage DeleteManager(int ManagerID)
+        [HttpDelete]
+        public HttpResponseMessage DeleteManager(İd id)
         {
             try
             {
                 using (var db = new HastaneDBEntities())
                 {
-                    if (db.tbl_HospitalManager.FirstOrDefault(x => x.ManagerID == ManagerID) != null)
+                    if (db.tbl_HospitalManager.FirstOrDefault(x => x.ManagerID == id.id) != null)
                     {
-                        db.tbl_HospitalManager.Remove(db.tbl_HospitalManager.FirstOrDefault(x => x.ManagerID == ManagerID));
+                        db.tbl_HospitalManager.Remove(db.tbl_HospitalManager.FirstOrDefault(x => x.ManagerID == id.id));
+                        
                         db.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, "silindi");
                     }
@@ -87,21 +88,23 @@ namespace RRS.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
-        [Route("Depatment")]
-        [HttpGet]
-        public HttpResponseMessage DeleteDepartment(int DepartmentID)
+        [Route("Department")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteDepartment(İd id)
         {
             try
             {
                 using (var db = new HastaneDBEntities())
                 {
-                    if (db.tbl_Department.FirstOrDefault(x => x.DepartmentID == DepartmentID) != null)
+                    if (db.tbl_Department.FirstOrDefault(x => x.DepartmentID == id.id) != null)
                     {
-                        db.tbl_Department.Remove(db.tbl_Department.FirstOrDefault(x => x.DepartmentID == DepartmentID));
+                        db.tbl_Departmentss.Remove(db.tbl_Departmentss.FirstOrDefault(x => x.DepartmentID == id.id));
                         db.SaveChanges();
+                        
+                        
                         return Request.CreateResponse(HttpStatusCode.OK, "silindi");
                     }
                     else
@@ -113,21 +116,22 @@ namespace RRS.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
 
         [Route("Hospital")]
-        [HttpGet]
-        public HttpResponseMessage DeleteHospital(int HospitalID)
+        [HttpDelete]
+        public HttpResponseMessage DeleteHospital(İd id)
         {
             try
             {
                 using (var db = new HastaneDBEntities())
                 {
-                    if (db.tbl_Hospital.FirstOrDefault(x => x.HospitalID == HospitalID) != null)
+                    if (db.tbl_Hospital.FirstOrDefault(x => x.HospitalID == id.id) != null)
                     {
-                        db.tbl_Hospital.Remove(db.tbl_Hospital.FirstOrDefault(x => x.HospitalID == HospitalID));
+                        db.tbl_Hospital.Remove(db.tbl_Hospital.FirstOrDefault(x => x.HospitalID == id.id));
+                        db.tbl_Departmentss.Remove(db.tbl_Departmentss.FirstOrDefault(x => x.HospitalID == id.id));
                         db.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, "silindi");
                     }
@@ -140,11 +144,11 @@ namespace RRS.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
         [Route("departmentss")]
-        [HttpGet]
+        [HttpDelete]
         public HttpResponseMessage Delete(tbl_Departmentss departments)
         {
             try
@@ -166,13 +170,13 @@ namespace RRS.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
 
 
         }
         [Route("favori")]
-        [HttpGet]
+        [HttpDelete]
         public HttpResponseMessage Delete(tbl_Favorite favori)
         {
             try
@@ -194,14 +198,17 @@ namespace RRS.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
 
 
         }
 
 
-
+        public class İd
+        {
+            public int id;
+        }
 
 
     }

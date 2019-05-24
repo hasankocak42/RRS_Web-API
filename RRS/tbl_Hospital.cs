@@ -14,16 +14,7 @@ namespace RRS
     
     public partial class tbl_Hospital
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbl_Hospital()
-        {
-            this.tbl_Departmentss = new HashSet<tbl_Departmentss>();
-        }
-    
         public int HospitalID { get; set; }
         public string HospitalName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_Departmentss> tbl_Departmentss { get; set; }
     }
 }

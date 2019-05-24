@@ -4,22 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c1ddebc0ff6f46d9955232579ee71fc5" Name="Diagram1">
-        <EntityTypeShape EntityType="HastaneDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HastaneDBModel.tbl_Admin" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HastaneDBModel.tbl_Appointment" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HastaneDBModel.tbl_Date" Width="1.5" PointX="2.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="HastaneDBModel.tbl_Department" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+      <Diagram DiagramId="9908df046ded4500bf8a497513b783aa" Name="Diagram1">
+        <EntityTypeShape EntityType="HastaneDBModel.tbl_Admin" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HastaneDBModel.tbl_Appointment" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HastaneDBModel.tbl_Date" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HastaneDBModel.tbl_Department" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="HastaneDBModel.tbl_Departmentss" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HastaneDBModel.tbl_Doctor" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HastaneDBModel.tbl_Favorite" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HastaneDBModel.tbl_Hospital" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HastaneDBModel.tbl_HospitalManager" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HastaneDBModel.tbl_Hour" Width="1.5" PointX="5" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HastaneDBModel.tbl_Patient" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <AssociationConnector Association="HastaneDBModel.FK_tbl_Hour_tbl_Date" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HastaneDBModel.tbl_Doctor" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HastaneDBModel.tbl_Favorite" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HastaneDBModel.tbl_Hospital" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HastaneDBModel.tbl_HospitalManager" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HastaneDBModel.tbl_Hour" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HastaneDBModel.tbl_Patient" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="HastaneDBModel.FK_tbl_Departmentss_tbl_Department" ManuallyRouted="false" />
-        <AssociationConnector Association="HastaneDBModel.FK_tbl_Departmentss_tbl_Hospital" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

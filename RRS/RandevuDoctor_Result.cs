@@ -10,12 +10,14 @@
 namespace RRS
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tbl_Date
+    public partial class RandevuDoctor_Result
     {
-        public int DateID { get; set; }
-        public System.DateTime Dates { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public int DoctorID { get; set; }
+        public string Tckn { get; set; }
+        public string DoctorName { get; set; }
+        public string DoctorSurname { get; set; }
+        public int DepartmentID { get; set; }
+        public int HospitalID { get; set; }
     }
 }

@@ -15,10 +15,7 @@ namespace RRS
     public partial class tbl_Hour
     {
         public int HourID { get; set; }
-        public System.TimeSpan Hour { get; set; }
-        public int DateID { get; set; }
+        public System.TimeSpan Hourss { get; set; }
         public bool Active { get; set; }
-    
-        public virtual tbl_Date tbl_Date { get; set; }
     }
 }

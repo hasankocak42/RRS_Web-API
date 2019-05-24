@@ -27,7 +27,6 @@ namespace RRS
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tbl_Admin> tbl_Admin { get; set; }
         public virtual DbSet<tbl_Appointment> tbl_Appointment { get; set; }
         public virtual DbSet<tbl_Date> tbl_Date { get; set; }
@@ -51,6 +50,15 @@ namespace RRS
                 new ObjectParameter("DoctorID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("addFavoriteDoctor", patientIDParameter, doctorIDParameter);
+        }
+    
+        public virtual ObjectResult<DepartmenList_Result> DepartmenList(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DepartmenList_Result>("DepartmenList", idParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> DoctorSignIn(string tckn, string doctorPassword)
@@ -116,6 +124,11 @@ namespace RRS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetAnAppointment", patientIdParameter, doctorIdParameter, appointmentDateParameter, appointmentTimeParameter);
         }
     
+        public virtual ObjectResult<HospitalList_Result> HospitalList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HospitalList_Result>("HospitalList");
+        }
+    
         public virtual int MaasHesaplaa()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MaasHesaplaa");
@@ -150,17 +163,30 @@ namespace RRS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaitentUpdateInformation", patientIDParameter, tcknParameter, patientPasswordParameter, paitentNameParameter, paitentSurnameParameter, paitentMailParameter);
         }
     
-        public virtual int PatientSignIn(string tckn, string patientPassword)
+        public virtual ObjectResult<Nullable<System.TimeSpan>> Randevudate(Nullable<int> doctorid, Nullable<System.DateTime> date)
         {
-            var tcknParameter = tckn != null ?
-                new ObjectParameter("Tckn", tckn) :
-                new ObjectParameter("Tckn", typeof(string));
+            var doctoridParameter = doctorid.HasValue ?
+                new ObjectParameter("doctorid", doctorid) :
+                new ObjectParameter("doctorid", typeof(int));
     
-            var patientPasswordParameter = patientPassword != null ?
-                new ObjectParameter("PatientPassword", patientPassword) :
-                new ObjectParameter("PatientPassword", typeof(string));
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("Date", date) :
+                new ObjectParameter("Date", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PatientSignIn", tcknParameter, patientPasswordParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.TimeSpan>>("Randevudate", doctoridParameter, dateParameter);
+        }
+    
+        public virtual ObjectResult<RandevuDoctor_Result> RandevuDoctor(Nullable<int> hospitalid, Nullable<int> departmenid)
+        {
+            var hospitalidParameter = hospitalid.HasValue ?
+                new ObjectParameter("hospitalid", hospitalid) :
+                new ObjectParameter("hospitalid", typeof(int));
+    
+            var departmenidParameter = departmenid.HasValue ?
+                new ObjectParameter("departmenid", departmenid) :
+                new ObjectParameter("departmenid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RandevuDoctor_Result>("RandevuDoctor", hospitalidParameter, departmenidParameter);
         }
     
         public virtual int Register(string tckn, string patientPassword, string name, string surname, string mail)
@@ -201,24 +227,6 @@ namespace RRS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RemoveAppointment", appointmentIDParameter, doctorIDParameter);
         }
     
-        public virtual int SearchDepartment(string departmentName)
-        {
-            var departmentNameParameter = departmentName != null ?
-                new ObjectParameter("DepartmentName", departmentName) :
-                new ObjectParameter("DepartmentName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SearchDepartment", departmentNameParameter);
-        }
-    
-        public virtual int SearchDoctor(string doctorName)
-        {
-            var doctorNameParameter = doctorName != null ?
-                new ObjectParameter("DoctorName", doctorName) :
-                new ObjectParameter("DoctorName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SearchDoctor", doctorNameParameter);
-        }
-    
         public virtual ObjectResult<SearchHospital_Result> SearchHospital(string hospitalName)
         {
             var hospitalNameParameter = hospitalName != null ?
@@ -226,109 +234,6 @@ namespace RRS
                 new ObjectParameter("HospitalName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SearchHospital_Result>("SearchHospital", hospitalNameParameter);
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
         public virtual int UpdateDepartment(string departmentName, Nullable<int> departmentID)
@@ -380,6 +285,42 @@ namespace RRS
                 new ObjectParameter("HospitalID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateHospital", hospitalNameParameter, hospitalIDParameter);
+        }
+    
+        public virtual ObjectResult<AppointmentAfter_Result> AppointmentAfter(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AppointmentAfter_Result>("AppointmentAfter", idParameter);
+        }
+    
+        public virtual ObjectResult<AppointmentBefore_Result> AppointmentBefore(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AppointmentBefore_Result>("AppointmentBefore", idParameter);
+        }
+    
+        public virtual ObjectResult<AppointmentAfterdoctor_Result> AppointmentAfterdoctor(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AppointmentAfterdoctor_Result>("AppointmentAfterdoctor", idParameter);
+        }
+    
+        public virtual ObjectResult<AppointmentBeforedoctor_Result> AppointmentBeforedoctor(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AppointmentBeforedoctor_Result>("AppointmentBeforedoctor", idParameter);
         }
     }
 }

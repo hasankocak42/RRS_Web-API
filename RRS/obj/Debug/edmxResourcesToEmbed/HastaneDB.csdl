@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="HastaneDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="tbl_Admin">
     <Key>
       <PropertyRef Name="AdminID" />
@@ -37,9 +27,8 @@
       <PropertyRef Name="DateID" />
     </Key>
     <Property Name="DateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Dates" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Active" Type="Boolean" />
-    <NavigationProperty Name="tbl_Hour" Relationship="Self.FK_tbl_Hour_tbl_Date" FromRole="tbl_Date" ToRole="tbl_Hour" />
   </EntityType>
   <EntityType Name="tbl_Department">
     <Key>
@@ -57,7 +46,6 @@
     <Property Name="DepartmentID" Type="Int32" Nullable="false" />
     <Property Name="HospitalID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="tbl_Department" Relationship="Self.FK_tbl_Departmentss_tbl_Department" FromRole="tbl_Departmentss" ToRole="tbl_Department" />
-    <NavigationProperty Name="tbl_Hospital" Relationship="Self.FK_tbl_Departmentss_tbl_Hospital" FromRole="tbl_Departmentss" ToRole="tbl_Hospital" />
   </EntityType>
   <EntityType Name="tbl_Doctor">
     <Key>
@@ -87,7 +75,6 @@
     </Key>
     <Property Name="HospitalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="HospitalName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="tbl_Departmentss" Relationship="Self.FK_tbl_Departmentss_tbl_Hospital" FromRole="tbl_Hospital" ToRole="tbl_Departmentss" />
   </EntityType>
   <EntityType Name="tbl_HospitalManager">
     <Key>
@@ -105,10 +92,8 @@
       <PropertyRef Name="HourID" />
     </Key>
     <Property Name="HourID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Hour" Type="Time" Nullable="false" Precision="7" />
-    <Property Name="DateID" Type="Int32" Nullable="false" />
+    <Property Name="Hourss" Type="Time" Nullable="false" Precision="7" />
     <Property Name="Active" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="tbl_Date" Relationship="Self.FK_tbl_Hour_tbl_Date" FromRole="tbl_Hour" ToRole="tbl_Date" />
   </EntityType>
   <EntityType Name="tbl_Patient">
     <Key>
@@ -121,18 +106,6 @@
     <Property Name="PaitentSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="PaitentMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
-  <Association Name="FK_tbl_Hour_tbl_Date">
-    <End Role="tbl_Date" Type="Self.tbl_Date" Multiplicity="1" />
-    <End Role="tbl_Hour" Type="Self.tbl_Hour" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_Date">
-        <PropertyRef Name="DateID" />
-      </Principal>
-      <Dependent Role="tbl_Hour">
-        <PropertyRef Name="DateID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_tbl_Departmentss_tbl_Department">
     <End Role="tbl_Department" Type="Self.tbl_Department" Multiplicity="1" />
     <End Role="tbl_Departmentss" Type="Self.tbl_Departmentss" Multiplicity="*" />
@@ -145,20 +118,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tbl_Departmentss_tbl_Hospital">
-    <End Role="tbl_Hospital" Type="Self.tbl_Hospital" Multiplicity="1" />
-    <End Role="tbl_Departmentss" Type="Self.tbl_Departmentss" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_Hospital">
-        <PropertyRef Name="HospitalID" />
-      </Principal>
-      <Dependent Role="tbl_Departmentss">
-        <PropertyRef Name="HospitalID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="HastaneDBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" />
     <EntitySet Name="tbl_Appointment" EntityType="Self.tbl_Appointment" />
     <EntitySet Name="tbl_Date" EntityType="Self.tbl_Date" />
@@ -170,21 +130,16 @@
     <EntitySet Name="tbl_HospitalManager" EntityType="Self.tbl_HospitalManager" />
     <EntitySet Name="tbl_Hour" EntityType="Self.tbl_Hour" />
     <EntitySet Name="tbl_Patient" EntityType="Self.tbl_Patient" />
-    <AssociationSet Name="FK_tbl_Hour_tbl_Date" Association="Self.FK_tbl_Hour_tbl_Date">
-      <End Role="tbl_Date" EntitySet="tbl_Date" />
-      <End Role="tbl_Hour" EntitySet="tbl_Hour" />
-    </AssociationSet>
     <AssociationSet Name="FK_tbl_Departmentss_tbl_Department" Association="Self.FK_tbl_Departmentss_tbl_Department">
       <End Role="tbl_Department" EntitySet="tbl_Department" />
-      <End Role="tbl_Departmentss" EntitySet="tbl_Departmentss" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbl_Departmentss_tbl_Hospital" Association="Self.FK_tbl_Departmentss_tbl_Hospital">
-      <End Role="tbl_Hospital" EntitySet="tbl_Hospital" />
       <End Role="tbl_Departmentss" EntitySet="tbl_Departmentss" />
     </AssociationSet>
     <FunctionImport Name="addFavoriteDoctor">
       <Parameter Name="PatientID" Mode="In" Type="Int32" />
       <Parameter Name="DoctorID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DepartmenList" ReturnType="Collection(HastaneDBModel.DepartmenList_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="DoctorSignIn" ReturnType="Collection(Int32)">
       <Parameter Name="Tckn" Mode="In" Type="String" />
@@ -204,6 +159,7 @@
       <Parameter Name="AppointmentDate" Mode="In" Type="DateTime" />
       <Parameter Name="AppointmentTime" Mode="In" Type="Time" />
     </FunctionImport>
+    <FunctionImport Name="HospitalList" ReturnType="Collection(HastaneDBModel.HospitalList_Result)" />
     <FunctionImport Name="MaasHesaplaa" />
     <FunctionImport Name="PaitentUpdateInformation">
       <Parameter Name="PatientID" Mode="In" Type="Int32" />
@@ -213,9 +169,13 @@
       <Parameter Name="PaitentSurname" Mode="In" Type="String" />
       <Parameter Name="PaitentMail" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="PatientSignIn">
-      <Parameter Name="Tckn" Mode="In" Type="String" />
-      <Parameter Name="PatientPassword" Mode="In" Type="String" />
+    <FunctionImport Name="Randevudate" ReturnType="Collection(Time)">
+      <Parameter Name="doctorid" Mode="In" Type="Int32" />
+      <Parameter Name="Date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="RandevuDoctor" ReturnType="Collection(HastaneDBModel.RandevuDoctor_Result)">
+      <Parameter Name="hospitalid" Mode="In" Type="Int32" />
+      <Parameter Name="departmenid" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="Register">
       <Parameter Name="Tckn" Mode="In" Type="String" />
@@ -228,45 +188,9 @@
       <Parameter Name="AppointmentID" Mode="In" Type="Int32" />
       <Parameter Name="doctorID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="SearchDepartment">
-      <Parameter Name="DepartmentName" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="SearchDoctor">
-      <Parameter Name="DoctorName" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="SearchHospital" ReturnType="Collection(HastaneDBModel.SearchHospital_Result)">
       <Parameter Name="HospitalName" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="sp_alterdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_creatediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_dropdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_renamediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="new_diagramname" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_upgraddiagrams" />
     <FunctionImport Name="UpdateDepartment">
       <Parameter Name="DepartmentName" Mode="In" Type="String" />
       <Parameter Name="DepartmentID" Mode="In" Type="Int32" />
@@ -282,9 +206,77 @@
       <Parameter Name="HospitalName" Mode="In" Type="String" />
       <Parameter Name="HospitalID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="AppointmentAfter" ReturnType="Collection(HastaneDBModel.AppointmentAfter_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AppointmentBefore" ReturnType="Collection(HastaneDBModel.AppointmentBefore_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AppointmentAfterdoctor" ReturnType="Collection(HastaneDBModel.AppointmentAfterdoctor_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AppointmentBeforedoctor" ReturnType="Collection(HastaneDBModel.AppointmentBeforedoctor_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="DepartmenList_Result">
+    <Property Type="Int32" Name="DepartmentID" Nullable="false" />
+    <Property Type="Int32" Name="HospitalID" Nullable="false" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="HospitalList_Result">
+    <Property Type="Int32" Name="HospitalID" Nullable="false" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="RandevuDoctor_Result">
+    <Property Type="Int32" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="Tckn" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="DepartmentID" Nullable="false" />
+    <Property Type="Int32" Name="HospitalID" Nullable="false" />
+  </ComplexType>
   <ComplexType Name="SearchHospital_Result">
     <Property Type="Int32" Name="HospitalID" Nullable="false" />
     <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="AppointmentAfter_Result">
+    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+    <Property Type="Int32" Name="PatientID" Nullable="false" />
+    <Property Type="Int32" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="AppointmentBefore_Result">
+    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+    <Property Type="Int32" Name="PatientID" Nullable="false" />
+    <Property Type="Int32" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="AppointmentAfterdoctor_Result">
+    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+    <Property Type="Int32" Name="PatientID" Nullable="false" />
+    <Property Type="Int32" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+    <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="AppointmentBeforedoctor_Result">
+    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+    <Property Type="Int32" Name="PatientID" Nullable="false" />
+    <Property Type="Int32" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+    <Property Type="Time" Name="AppointmentTime" Nullable="false" />
   </ComplexType>
 </Schema>

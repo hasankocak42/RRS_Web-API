@@ -10,14 +10,15 @@
 namespace RRS
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class AppointmentBefore_Result
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public System.DateTime AppointmentDate { get; set; }
+        public int PatientID { get; set; }
+        public int DoctorID { get; set; }
+        public string DoctorName { get; set; }
+        public string DoctorSurname { get; set; }
+        public string DepartmentName { get; set; }
+        public string HospitalName { get; set; }
     }
 }

@@ -19,6 +19,5 @@ namespace RRS
         public int HospitalID { get; set; }
     
         public virtual tbl_Department tbl_Department { get; set; }
-        public virtual tbl_Hospital tbl_Hospital { get; set; }
     }
 }

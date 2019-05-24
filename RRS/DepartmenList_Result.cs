@@ -10,12 +10,12 @@
 namespace RRS
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tbl_Date
+    public partial class DepartmenList_Result
     {
-        public int DateID { get; set; }
-        public System.DateTime Dates { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public int DepartmentID { get; set; }
+        public int HospitalID { get; set; }
+        public string HospitalName { get; set; }
+        public string DepartmentName { get; set; }
     }
 }

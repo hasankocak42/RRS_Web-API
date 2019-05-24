@@ -15,8 +15,8 @@ namespace RRS.Controllers
     {
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("patient")]
-        [HttpGet]
-        public HttpResponseMessage GetPatient(UyeBilgisi uye)
+        [HttpPost]
+        public HttpResponseMessage PostPatient(UyeBilgisi uye)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace RRS.Controllers
                         }
                         else
                         {
-                            return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Yanlış şifre");
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Yanlış şifre");
 
 
                         }
@@ -47,7 +47,7 @@ namespace RRS.Controllers
             
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
 
@@ -61,9 +61,9 @@ namespace RRS.Controllers
 
 
 
-        [Route("doctor")]
-        [HttpGet]
-        public HttpResponseMessage GetDoctor(UyeBilgisi uyee)
+        [Route("managerial")]
+        [HttpPost]
+        public HttpResponseMessage Postmanagerial(UyeBilgisi uyee)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace RRS.Controllers
                         }
                         else
                         {
-                            return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Yanlış şifre");
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Yanlış şifre");
 
 
                         }
@@ -99,7 +99,7 @@ namespace RRS.Controllers
                         }
                         else
                         {
-                            return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Yanlış şifre");
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Yanlış şifre");
 
 
                         }
@@ -112,21 +112,21 @@ namespace RRS.Controllers
                         }
                         else
                         {
-                            return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Yanlış şifre");
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Yanlış şifre");
 
 
                         }
                     }
                     else
                     {
-                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "TcNo Hatalı");
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "TcNo Hatalı");
                     }
                 }
             }
 
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
     }

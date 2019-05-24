@@ -35,7 +35,7 @@ namespace RRS.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
 
@@ -50,7 +50,7 @@ namespace RRS.Controllers
                     tbl_Doctor Doctor = db.tbl_Doctor.FirstOrDefault(x => x.Tckn == doctor.Tckn);
                     if (Doctor != null)
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Bu Tc kullanılmakta");
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Bu Tc kullanılmakta");
                 }
                 else
                 {
@@ -62,7 +62,7 @@ namespace RRS.Controllers
         }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
         [Route("manager")]
@@ -76,7 +76,7 @@ namespace RRS.Controllers
                 tbl_HospitalManager Manager = db.tbl_HospitalManager.FirstOrDefault(x => x.Tckn == manager.Tckn);
                 if (Manager != null)
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Bu Tc kullanılmakta");
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Bu Tc kullanılmakta");
                 }
                 else
                 {
@@ -88,7 +88,7 @@ namespace RRS.Controllers
 }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
         [Route("departman")]
@@ -102,7 +102,7 @@ namespace RRS.Controllers
                     tbl_Department Departman = db.tbl_Department.FirstOrDefault(x => x.DepartmentName == departman.DepartmentName);
                     if (Departman != null)
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Bu departman bulunmakta");
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Bu departman bulunmakta");
                 }
                 else
                 {
@@ -114,7 +114,7 @@ namespace RRS.Controllers
 }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
         [Route("hospital")]
@@ -128,7 +128,7 @@ namespace RRS.Controllers
                     tbl_Hospital Hospital = db.tbl_Hospital.FirstOrDefault(x => x.HospitalName == hospital.HospitalName);
                     if (db.tbl_Hospital.FirstOrDefault(x => x.HospitalName== hospital.HospitalName) != null)
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Bu hastane bulunmakta");
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Bu hastane bulunmakta");
                 }
                 else
                 {
@@ -140,7 +140,7 @@ namespace RRS.Controllers
 }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
         [Route("departman")]
@@ -154,7 +154,7 @@ namespace RRS.Controllers
                 tbl_Departmentss Departmens = db.tbl_Departmentss.FirstOrDefault(x => x.HospitalID == departmens.HospitalID || x.DepartmentID == departmens.DepartmentID);
                 if (Departmens != null)
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Bu hastanede bu departman bulunmakta bulunmakta");
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Bu hastanede bu departman bulunmakta bulunmakta");
                 }
                 else
                 {
@@ -166,7 +166,7 @@ namespace RRS.Controllers
 }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
         [Route("departman")]
@@ -180,7 +180,7 @@ namespace RRS.Controllers
                     tbl_Favorite Favori = db.tbl_Favorite.FirstOrDefault(x => x.DoctorID == favori.DoctorID || x.PatientID == favori.PatientID);
                 if (Favori != null)
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Bu hastanede bu departman bulunmakta bulunmakta");
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Bu hastanede bu departman bulunmakta bulunmakta");
                 }
                 else
                 {
@@ -192,7 +192,7 @@ namespace RRS.Controllers
 }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
 
