@@ -8,10 +8,10 @@ using System.Web.Http.Cors;
 
 namespace RRS.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Update")]
     public class UpdateController : ApiController
     {
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("Doctor")]
         [HttpGet]
         public HttpResponseMessage Put(tbl_Doctor doctor)

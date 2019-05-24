@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9908df046ded4500bf8a497513b783aa" Name="Diagram1">
+      <Diagram DiagramId="e64bfc7720b74a2099543f7af3e2f00c" Name="Diagram1">
         <EntityTypeShape EntityType="HastaneDBModel.tbl_Admin" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HastaneDBModel.tbl_Appointment" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HastaneDBModel.tbl_Date" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />

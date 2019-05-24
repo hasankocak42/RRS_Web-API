@@ -117,6 +117,62 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="addFavoriteDoctor" FunctionName="HastaneDBModel.Store.addFavoriteDoctor" />
+    <FunctionImportMapping FunctionImportName="AppointmentAfter" FunctionName="HastaneDBModel.Store.AppointmentAfter">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentAfter_Result">
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AppointmentAfterdoctor" FunctionName="HastaneDBModel.Store.AppointmentAfterdoctor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentAfterdoctor_Result">
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AppointmentBefore" FunctionName="HastaneDBModel.Store.AppointmentBefore">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentBefore_Result">
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AppointmentBeforedoctor" FunctionName="HastaneDBModel.Store.AppointmentBeforedoctor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentBeforedoctor_Result">
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="DepartmenList" FunctionName="HastaneDBModel.Store.DepartmenList">
       <ResultMapping>
         <ComplexTypeMapping TypeName="HastaneDBModel.DepartmenList_Result">
@@ -166,59 +222,5 @@
     <FunctionImportMapping FunctionImportName="UpdateDepartment" FunctionName="HastaneDBModel.Store.UpdateDepartment" />
     <FunctionImportMapping FunctionImportName="UpdateDoctor" FunctionName="HastaneDBModel.Store.UpdateDoctor" />
     <FunctionImportMapping FunctionImportName="UpdateHospital" FunctionName="HastaneDBModel.Store.UpdateHospital" />
-    <FunctionImportMapping FunctionImportName="AppointmentAfter" FunctionName="HastaneDBModel.Store.AppointmentAfter">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentAfter_Result">
-          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
-          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
-          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
-          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="AppointmentBefore" FunctionName="HastaneDBModel.Store.AppointmentBefore">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentBefore_Result">
-          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
-          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
-          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
-          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="AppointmentAfterdoctor" FunctionName="HastaneDBModel.Store.AppointmentAfterdoctor">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentAfterdoctor_Result">
-          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
-          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
-          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
-          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
-          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="AppointmentBeforedoctor" FunctionName="HastaneDBModel.Store.AppointmentBeforedoctor">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentBeforedoctor_Result">
-          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
-          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
-          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
-          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
-          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

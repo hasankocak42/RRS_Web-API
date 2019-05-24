@@ -8,10 +8,10 @@ using System.Web.Http.Cors;
 
 namespace RRS.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Get")]
     public class GetController : ApiController
     {
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("GRandevu")]
         [HttpGet]
         public HttpResponseMessage GetRandevuHasta(Id id)

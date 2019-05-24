@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="HastaneDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="HastaneDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_Admin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -222,7 +222,8 @@
             <End Role="tbl_Departmentss" EntitySet="tbl_Departmentss" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HastaneDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -364,8 +365,20 @@
             <Parameter Name="PatientID" Mode="In" Type="Int32" />
             <Parameter Name="DoctorID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="AppointmentAfter" ReturnType="Collection(HastaneDBModel.AppointmentAfter_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AppointmentAfterdoctor" ReturnType="Collection(HastaneDBModel.AppointmentAfterdoctor_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AppointmentBefore" ReturnType="Collection(HastaneDBModel.AppointmentBefore_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AppointmentBeforedoctor" ReturnType="Collection(HastaneDBModel.AppointmentBeforedoctor_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="DepartmenList" ReturnType="Collection(HastaneDBModel.DepartmenList_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DoctorSignIn" ReturnType="Collection(Int32)">
             <Parameter Name="Tckn" Mode="In" Type="String" />
@@ -415,7 +428,7 @@
             <Parameter Name="doctorID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SearchHospital" ReturnType="Collection(HastaneDBModel.SearchHospital_Result)">
-          <Parameter Name="HospitalName" Mode="In" Type="String" />
+            <Parameter Name="HospitalName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UpdateDepartment">
             <Parameter Name="DepartmentName" Mode="In" Type="String" />
@@ -432,19 +445,47 @@
             <Parameter Name="HospitalName" Mode="In" Type="String" />
             <Parameter Name="HospitalID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="AppointmentAfter" ReturnType="Collection(HastaneDBModel.AppointmentAfter_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AppointmentBefore" ReturnType="Collection(HastaneDBModel.AppointmentBefore_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AppointmentAfterdoctor" ReturnType="Collection(HastaneDBModel.AppointmentAfterdoctor_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AppointmentBeforedoctor" ReturnType="Collection(HastaneDBModel.AppointmentBeforedoctor_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="AppointmentAfter_Result">
+          <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+          <Property Type="Int32" Name="PatientID" Nullable="false" />
+          <Property Type="Int32" Name="DoctorID" Nullable="false" />
+          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+          <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="AppointmentAfterdoctor_Result">
+          <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+          <Property Type="Int32" Name="PatientID" Nullable="false" />
+          <Property Type="Int32" Name="DoctorID" Nullable="false" />
+          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+          <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="AppointmentBefore_Result">
+          <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+          <Property Type="Int32" Name="PatientID" Nullable="false" />
+          <Property Type="Int32" Name="DoctorID" Nullable="false" />
+          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+          <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="AppointmentBeforedoctor_Result">
+          <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+          <Property Type="Int32" Name="PatientID" Nullable="false" />
+          <Property Type="Int32" Name="DoctorID" Nullable="false" />
+          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+          <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="DepartmenList_Result">
           <Property Type="Int32" Name="DepartmentID" Nullable="false" />
           <Property Type="Int32" Name="HospitalID" Nullable="false" />
@@ -466,44 +507,6 @@
         <ComplexType Name="SearchHospital_Result">
           <Property Type="Int32" Name="HospitalID" Nullable="false" />
           <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="AppointmentAfter_Result">
-          <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
-          <Property Type="Int32" Name="PatientID" Nullable="false" />
-          <Property Type="Int32" Name="DoctorID" Nullable="false" />
-          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="AppointmentBefore_Result">
-          <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
-          <Property Type="Int32" Name="PatientID" Nullable="false" />
-          <Property Type="Int32" Name="DoctorID" Nullable="false" />
-          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="AppointmentAfterdoctor_Result">
-          <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
-          <Property Type="Int32" Name="PatientID" Nullable="false" />
-          <Property Type="Int32" Name="DoctorID" Nullable="false" />
-          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
-          <Property Type="Time" Name="AppointmentTime" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="AppointmentBeforedoctor_Result">
-          <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
-          <Property Type="Int32" Name="PatientID" Nullable="false" />
-          <Property Type="Int32" Name="DoctorID" Nullable="false" />
-          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
-          <Property Type="Time" Name="AppointmentTime" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -627,6 +630,62 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="addFavoriteDoctor" FunctionName="HastaneDBModel.Store.addFavoriteDoctor" />
+          <FunctionImportMapping FunctionImportName="AppointmentAfter" FunctionName="HastaneDBModel.Store.AppointmentAfter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentAfter_Result">
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AppointmentAfterdoctor" FunctionName="HastaneDBModel.Store.AppointmentAfterdoctor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentAfterdoctor_Result">
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AppointmentBefore" FunctionName="HastaneDBModel.Store.AppointmentBefore">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentBefore_Result">
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AppointmentBeforedoctor" FunctionName="HastaneDBModel.Store.AppointmentBeforedoctor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentBeforedoctor_Result">
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="DepartmenList" FunctionName="HastaneDBModel.Store.DepartmenList">
             <ResultMapping>
               <ComplexTypeMapping TypeName="HastaneDBModel.DepartmenList_Result">
@@ -676,60 +735,6 @@
           <FunctionImportMapping FunctionImportName="UpdateDepartment" FunctionName="HastaneDBModel.Store.UpdateDepartment" />
           <FunctionImportMapping FunctionImportName="UpdateDoctor" FunctionName="HastaneDBModel.Store.UpdateDoctor" />
           <FunctionImportMapping FunctionImportName="UpdateHospital" FunctionName="HastaneDBModel.Store.UpdateHospital" />
-          <FunctionImportMapping FunctionImportName="AppointmentAfter" FunctionName="HastaneDBModel.Store.AppointmentAfter">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentAfter_Result">
-                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
-                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
-                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AppointmentBefore" FunctionName="HastaneDBModel.Store.AppointmentBefore">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentBefore_Result">
-                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
-                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
-                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AppointmentAfterdoctor" FunctionName="HastaneDBModel.Store.AppointmentAfterdoctor">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentAfterdoctor_Result">
-                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
-                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
-                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
-                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AppointmentBeforedoctor" FunctionName="HastaneDBModel.Store.AppointmentBeforedoctor">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="HastaneDBModel.AppointmentBeforedoctor_Result">
-                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
-                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
-                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
-                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -52,6 +52,42 @@ namespace RRS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("addFavoriteDoctor", patientIDParameter, doctorIDParameter);
         }
     
+        public virtual ObjectResult<AppointmentAfter_Result> AppointmentAfter(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AppointmentAfter_Result>("AppointmentAfter", idParameter);
+        }
+    
+        public virtual ObjectResult<AppointmentAfterdoctor_Result> AppointmentAfterdoctor(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AppointmentAfterdoctor_Result>("AppointmentAfterdoctor", idParameter);
+        }
+    
+        public virtual ObjectResult<AppointmentBefore_Result> AppointmentBefore(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AppointmentBefore_Result>("AppointmentBefore", idParameter);
+        }
+    
+        public virtual ObjectResult<AppointmentBeforedoctor_Result> AppointmentBeforedoctor(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AppointmentBeforedoctor_Result>("AppointmentBeforedoctor", idParameter);
+        }
+    
         public virtual ObjectResult<DepartmenList_Result> DepartmenList(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -285,42 +321,6 @@ namespace RRS
                 new ObjectParameter("HospitalID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateHospital", hospitalNameParameter, hospitalIDParameter);
-        }
-    
-        public virtual ObjectResult<AppointmentAfter_Result> AppointmentAfter(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AppointmentAfter_Result>("AppointmentAfter", idParameter);
-        }
-    
-        public virtual ObjectResult<AppointmentBefore_Result> AppointmentBefore(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AppointmentBefore_Result>("AppointmentBefore", idParameter);
-        }
-    
-        public virtual ObjectResult<AppointmentAfterdoctor_Result> AppointmentAfterdoctor(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AppointmentAfterdoctor_Result>("AppointmentAfterdoctor", idParameter);
-        }
-    
-        public virtual ObjectResult<AppointmentBeforedoctor_Result> AppointmentBeforedoctor(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AppointmentBeforedoctor_Result>("AppointmentBeforedoctor", idParameter);
         }
     }
 }

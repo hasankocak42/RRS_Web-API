@@ -138,6 +138,18 @@
       <Parameter Name="PatientID" Mode="In" Type="Int32" />
       <Parameter Name="DoctorID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="AppointmentAfter" ReturnType="Collection(HastaneDBModel.AppointmentAfter_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AppointmentAfterdoctor" ReturnType="Collection(HastaneDBModel.AppointmentAfterdoctor_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AppointmentBefore" ReturnType="Collection(HastaneDBModel.AppointmentBefore_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AppointmentBeforedoctor" ReturnType="Collection(HastaneDBModel.AppointmentBeforedoctor_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="DepartmenList" ReturnType="Collection(HastaneDBModel.DepartmenList_Result)">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -206,19 +218,47 @@
       <Parameter Name="HospitalName" Mode="In" Type="String" />
       <Parameter Name="HospitalID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="AppointmentAfter" ReturnType="Collection(HastaneDBModel.AppointmentAfter_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="AppointmentBefore" ReturnType="Collection(HastaneDBModel.AppointmentBefore_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="AppointmentAfterdoctor" ReturnType="Collection(HastaneDBModel.AppointmentAfterdoctor_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="AppointmentBeforedoctor" ReturnType="Collection(HastaneDBModel.AppointmentBeforedoctor_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="AppointmentAfter_Result">
+    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+    <Property Type="Int32" Name="PatientID" Nullable="false" />
+    <Property Type="Int32" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+    <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="AppointmentAfterdoctor_Result">
+    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+    <Property Type="Int32" Name="PatientID" Nullable="false" />
+    <Property Type="Int32" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+    <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="AppointmentBefore_Result">
+    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+    <Property Type="Int32" Name="PatientID" Nullable="false" />
+    <Property Type="Int32" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+    <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="AppointmentBeforedoctor_Result">
+    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+    <Property Type="Int32" Name="PatientID" Nullable="false" />
+    <Property Type="Int32" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+    <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+  </ComplexType>
   <ComplexType Name="DepartmenList_Result">
     <Property Type="Int32" Name="DepartmentID" Nullable="false" />
     <Property Type="Int32" Name="HospitalID" Nullable="false" />
@@ -240,43 +280,5 @@
   <ComplexType Name="SearchHospital_Result">
     <Property Type="Int32" Name="HospitalID" Nullable="false" />
     <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="AppointmentAfter_Result">
-    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
-    <Property Type="Int32" Name="PatientID" Nullable="false" />
-    <Property Type="Int32" Name="DoctorID" Nullable="false" />
-    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="AppointmentBefore_Result">
-    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
-    <Property Type="Int32" Name="PatientID" Nullable="false" />
-    <Property Type="Int32" Name="DoctorID" Nullable="false" />
-    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="AppointmentAfterdoctor_Result">
-    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
-    <Property Type="Int32" Name="PatientID" Nullable="false" />
-    <Property Type="Int32" Name="DoctorID" Nullable="false" />
-    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
-    <Property Type="Time" Name="AppointmentTime" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="AppointmentBeforedoctor_Result">
-    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
-    <Property Type="Int32" Name="PatientID" Nullable="false" />
-    <Property Type="Int32" Name="DoctorID" Nullable="false" />
-    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
-    <Property Type="Time" Name="AppointmentTime" Nullable="false" />
   </ComplexType>
 </Schema>

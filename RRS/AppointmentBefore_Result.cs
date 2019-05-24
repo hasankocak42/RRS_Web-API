@@ -20,5 +20,6 @@ namespace RRS
         public string DoctorSurname { get; set; }
         public string DepartmentName { get; set; }
         public string HospitalName { get; set; }
+        public System.TimeSpan AppointmentTime { get; set; }
     }
 }
