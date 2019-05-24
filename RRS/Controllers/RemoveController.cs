@@ -205,7 +205,7 @@ namespace RRS.Controllers
         }
 
         [Route("RandevuSil")]
-        [HttpPost]
+        [HttpDelete]
         public HttpResponseMessage DeleteRandevu(randevu ran)
         {
             try

@@ -13,7 +13,7 @@ namespace RRS.Controllers
     public class GetController : ApiController
     {
         [Route("GRandevu")]
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage GetRandevuHasta(Id id)
         {
             try
@@ -34,7 +34,7 @@ namespace RRS.Controllers
         }
 
         [Route("SRandevu")]
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage Getrandevu(Id id)
         {
             try
@@ -55,7 +55,7 @@ namespace RRS.Controllers
         }
 
         [Route("GDoctorRandevu")]
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage GetDoctor(Id id)
         {
             try
@@ -75,7 +75,7 @@ namespace RRS.Controllers
         }
 
         [Route("RandevuDoctorG")]
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage GetDoctorSonra(Id id)
         {
             try
@@ -187,9 +187,9 @@ namespace RRS.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
-        [Route("Randevuler")]
+        [Route("Favoriler")]
         [HttpPost]
-        public HttpResponseMessage PostRandevu(Id id)
+        public HttpResponseMessage GetRandevu(Id id)
         {
             try
             {
