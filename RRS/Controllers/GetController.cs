@@ -135,28 +135,58 @@ namespace RRS.Controllers
 
 
         [Route("DoctorDepartmen")]
-        [HttpGet]
-        public HttpResponseMessage Getdoctor(randevu rande)
+        [HttpPost]
+        public HttpResponseMessage Postdoctor(randevu rande)
         {
-            using (var db = new HastaneDBEntities())
+            try
+            {
+                using (var db = new HastaneDBEntities())
             {
                 return Request.CreateResponse(HttpStatusCode.OK, db.RandevuDoctor(rande.HID,rande.DID).ToList());
+                }
+            }
+             catch (Exception ex)
+            {
 
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
 
         [Route("UygunSaat")]
-        [HttpGet]
-        public HttpResponseMessage Getsaat(saat saat)
+        [HttpPost]
+        public HttpResponseMessage Postsaat(saat saat)
         {
-            using (var db = new HastaneDBEntities())
+            try
+            {
+                using (var db = new HastaneDBEntities())
             {
                 return Request.CreateResponse(HttpStatusCode.OK, db.Randevudate(saat.id,saat.date).ToList());
+                }
+            }
+             catch (Exception ex)
+            {
 
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
 
+        [Route("RandevuAl")]
+        [HttpPost]
+        public HttpResponseMessage PostRandevu(rande ran)
+        {
+            try
+            {
+                using (var db = new HastaneDBEntities())
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, db.GetAnAppointment(ran.Pid, ran.Did, ran.date, ran.time));
+                }
+            }
+             catch (Exception ex)
+            {
 
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+        }
         public class saat
         {
             public int id;
@@ -172,6 +202,15 @@ namespace RRS.Controllers
         public class Id
         {
             public int id;
+        }
+
+        public class rande
+        {
+            public int Pid;
+            public int Did;
+            public DateTime date;
+            public TimeSpan time;
+
         }
     }
 }
