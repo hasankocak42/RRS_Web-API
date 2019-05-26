@@ -10,16 +10,16 @@
 namespace RRS
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tbl_HospitalManager
+    public partial class CanceledAppointmentPatient_Result
     {
-        public int ManagerID { get; set; }
-        public string Tckn { get; set; }
-        public string ManagerUserName { get; set; }
-        public string ManagerPassword { get; set; }
-        public string ManagerName { get; set; }
-        public string ManagerSurname { get; set; }
-        public int HospitalID { get; set; }
+        public System.DateTime AppointmentDate { get; set; }
+        public int PatientID { get; set; }
+        public int DoctorID { get; set; }
+        public string DoctorName { get; set; }
+        public string DoctorSurname { get; set; }
+        public string DepartmentName { get; set; }
+        public string HospitalName { get; set; }
+        public System.TimeSpan AppointmentTime { get; set; }
     }
 }

@@ -22,6 +22,17 @@
     <Property Name="DoctorID" Type="int" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="tbl_CanceledAppointment">
+    <Key>
+      <PropertyRef Name="AppointmentID" />
+    </Key>
+    <Property Name="AppointmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AppointmentDate" Type="date" Nullable="false" />
+    <Property Name="AppointmentTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="PatientID" Type="int" Nullable="false" />
+    <Property Name="DoctorID" Type="int" Nullable="false" />
+    <Property Name="Annulment" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="tbl_Date">
     <Key>
       <PropertyRef Name="DateID" />
@@ -84,6 +95,7 @@
     <Property Name="ManagerPassword" Type="text" Nullable="false" />
     <Property Name="ManagerName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ManagerSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="HospitalID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="tbl_Hour">
     <Key>
@@ -120,6 +132,14 @@
     <Parameter Name="PatientID" Type="int" Mode="In" />
     <Parameter Name="DoctorID" Type="int" Mode="In" />
   </Function>
+  <Function Name="AdminAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DoctorId" Type="int" Mode="In" />
+    <Parameter Name="AppointmentDate" Type="date" Mode="In" />
+    <Parameter Name="AppointmentTime" Type="time" Mode="In" />
+  </Function>
+  <Function Name="AdminCancelledShow" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
   <Function Name="AppointmentAfter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
@@ -132,7 +152,19 @@
   <Function Name="AppointmentBeforedoctor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
+  <Function Name="CanceledAppointmentDoctor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CanceledAppointmentPatient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
   <Function Name="DepartmenList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DetailCanceledRandevu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DetailRandevu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
   <Function Name="DoctorSignIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -158,7 +190,9 @@
   </Function>
   <Function Name="HospitalList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="MaasHesaplaa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="MaasList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="MaasList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
   <Function Name="PaitentUpdateInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PatientID" Type="int" Mode="In" />
     <Parameter Name="Tckn" Type="nchar" Mode="In" />
@@ -182,7 +216,11 @@
     <Parameter Name="surname" Type="nchar" Mode="In" />
     <Parameter Name="mail" Type="nchar" Mode="In" />
   </Function>
-  <Function Name="RemoveAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="RemoveAppointmentDoctor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AppointmentID" Type="int" Mode="In" />
+    <Parameter Name="doctorID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="RemoveAppointmentPatient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="AppointmentID" Type="int" Mode="In" />
     <Parameter Name="doctorID" Type="int" Mode="In" />
   </Function>
@@ -207,6 +245,7 @@
   <EntityContainer Name="HastaneDBModelStoreContainer">
     <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Appointment" EntityType="Self.tbl_Appointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_CanceledAppointment" EntityType="Self.tbl_CanceledAppointment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Date" EntityType="Self.tbl_Date" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Department" EntityType="Self.tbl_Department" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Departmentss" EntityType="Self.tbl_Departmentss" Schema="dbo" store:Type="Tables" />

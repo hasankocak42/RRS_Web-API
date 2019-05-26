@@ -142,6 +142,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminCancelledShow_Result.cs">
+      <DependentUpon>HastaneDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="AppointmentAfterdoctor_Result.cs">
       <DependentUpon>HastaneDB.tt</DependentUpon>
     </Compile>
@@ -186,6 +189,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="CanceledAppointmentDoctor_Result.cs">
+      <DependentUpon>HastaneDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CanceledAppointmentPatient_Result.cs">
+      <DependentUpon>HastaneDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\GetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -196,6 +205,12 @@
       <DependentUpon>HastaneDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Department.cs" />
+    <Compile Include="DetailCanceledRandevu_Result.cs">
+      <DependentUpon>HastaneDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DetailRandevu_Result.cs">
+      <DependentUpon>HastaneDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Doctor.cs" />
     <Compile Include="favoriList_Result.cs">
       <DependentUpon>HastaneDB.tt</DependentUpon>
@@ -238,6 +253,9 @@
       <DependentUpon>HastaneDB.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Appointment.cs">
+      <DependentUpon>HastaneDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CanceledAppointment.cs">
       <DependentUpon>HastaneDB.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Date.cs">

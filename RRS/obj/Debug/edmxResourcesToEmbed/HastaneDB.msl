@@ -86,6 +86,7 @@
     <EntitySetMapping Name="tbl_HospitalManager">
       <EntityTypeMapping TypeName="HastaneDBModel.tbl_HospitalManager">
         <MappingFragment StoreEntitySet="tbl_HospitalManager">
+          <ScalarProperty Name="HospitalID" ColumnName="HospitalID" />
           <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
           <ScalarProperty Name="Tckn" ColumnName="Tckn" />
           <ScalarProperty Name="ManagerUserName" ColumnName="ManagerUserName" />
@@ -210,7 +211,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Register" FunctionName="HastaneDBModel.Store.Register" />
-    <FunctionImportMapping FunctionImportName="RemoveAppointment" FunctionName="HastaneDBModel.Store.RemoveAppointment" />
     <FunctionImportMapping FunctionImportName="SearchHospital" FunctionName="HastaneDBModel.Store.SearchHospital">
       <ResultMapping>
         <ComplexTypeMapping TypeName="HastaneDBModel.SearchHospital_Result">
@@ -241,6 +241,87 @@
           <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
           <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
           <ScalarProperty Name="Maas" ColumnName="Maas" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AdminAppointment" FunctionName="HastaneDBModel.Store.AdminAppointment" />
+    <EntitySetMapping Name="tbl_CanceledAppointment">
+      <EntityTypeMapping TypeName="HastaneDBModel.tbl_CanceledAppointment">
+        <MappingFragment StoreEntitySet="tbl_CanceledAppointment">
+          <ScalarProperty Name="Annulment" ColumnName="Annulment" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CanceledAppointmentDoctor" FunctionName="HastaneDBModel.Store.CanceledAppointmentDoctor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HastaneDBModel.CanceledAppointmentDoctor_Result">
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CanceledAppointmentPatient" FunctionName="HastaneDBModel.Store.CanceledAppointmentPatient">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HastaneDBModel.CanceledAppointmentPatient_Result">
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RemoveAppointmentDoctor" FunctionName="HastaneDBModel.Store.RemoveAppointmentDoctor" />
+    <FunctionImportMapping FunctionImportName="RemoveAppointmentPatient" FunctionName="HastaneDBModel.Store.RemoveAppointmentPatient" />
+    <FunctionImportMapping FunctionImportName="AdminCancelledShow" FunctionName="HastaneDBModel.Store.AdminCancelledShow">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HastaneDBModel.AdminCancelledShow_Result">
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DetailCanceledRandevu" FunctionName="HastaneDBModel.Store.DetailCanceledRandevu">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HastaneDBModel.DetailCanceledRandevu_Result">
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DetailRandevu" FunctionName="HastaneDBModel.Store.DetailRandevu">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HastaneDBModel.DetailRandevu_Result">
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

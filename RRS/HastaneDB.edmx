@@ -27,6 +27,17 @@
           <Property Name="DoctorID" Type="int" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbl_CanceledAppointment">
+          <Key>
+            <PropertyRef Name="AppointmentID" />
+          </Key>
+          <Property Name="AppointmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AppointmentDate" Type="date" Nullable="false" />
+          <Property Name="AppointmentTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="PatientID" Type="int" Nullable="false" />
+          <Property Name="DoctorID" Type="int" Nullable="false" />
+          <Property Name="Annulment" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="tbl_Date">
           <Key>
             <PropertyRef Name="DateID" />
@@ -89,6 +100,7 @@
           <Property Name="ManagerPassword" Type="text" Nullable="false" />
           <Property Name="ManagerName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ManagerSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HospitalID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tbl_Hour">
           <Key>
@@ -125,6 +137,14 @@
           <Parameter Name="PatientID" Type="int" Mode="In" />
           <Parameter Name="DoctorID" Type="int" Mode="In" />
         </Function>
+        <Function Name="AdminAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DoctorId" Type="int" Mode="In" />
+          <Parameter Name="AppointmentDate" Type="date" Mode="In" />
+          <Parameter Name="AppointmentTime" Type="time" Mode="In" />
+        </Function>
+        <Function Name="AdminCancelledShow" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="AppointmentAfter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
@@ -137,7 +157,19 @@
         <Function Name="AppointmentBeforedoctor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="CanceledAppointmentDoctor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CanceledAppointmentPatient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="DepartmenList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DetailCanceledRandevu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DetailRandevu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="DoctorSignIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -163,7 +195,9 @@
         </Function>
         <Function Name="HospitalList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MaasHesaplaa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="MaasList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaasList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="PaitentUpdateInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PatientID" Type="int" Mode="In" />
           <Parameter Name="Tckn" Type="nchar" Mode="In" />
@@ -187,7 +221,11 @@
           <Parameter Name="surname" Type="nchar" Mode="In" />
           <Parameter Name="mail" Type="nchar" Mode="In" />
         </Function>
-        <Function Name="RemoveAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RemoveAppointmentDoctor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AppointmentID" Type="int" Mode="In" />
+          <Parameter Name="doctorID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RemoveAppointmentPatient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AppointmentID" Type="int" Mode="In" />
           <Parameter Name="doctorID" Type="int" Mode="In" />
         </Function>
@@ -212,6 +250,7 @@
         <EntityContainer Name="HastaneDBModelStoreContainer">
           <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Appointment" EntityType="Self.tbl_Appointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CanceledAppointment" EntityType="Self.tbl_CanceledAppointment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Date" EntityType="Self.tbl_Date" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Department" EntityType="Self.tbl_Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Departmentss" EntityType="Self.tbl_Departmentss" Schema="dbo" store:Type="Tables" />
@@ -316,6 +355,7 @@
           <Property Name="ManagerPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ManagerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ManagerSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HospitalID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="tbl_Hour">
           <Key>
@@ -451,7 +491,38 @@
           <FunctionImport Name="favoriList" ReturnType="Collection(HastaneDBModel.favoriList_Result)">
           <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="MaasList" ReturnType="Collection(HastaneDBModel.MaasList_Result)" />
+          <FunctionImport Name="MaasList" ReturnType="Collection(HastaneDBModel.MaasList_Result)" >
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AdminAppointment">
+            <Parameter Name="DoctorId" Mode="In" Type="Int32" />
+            <Parameter Name="AppointmentDate" Mode="In" Type="DateTime" />
+            <Parameter Name="AppointmentTime" Mode="In" Type="Time" />
+          </FunctionImport>
+          <EntitySet Name="tbl_CanceledAppointment" EntityType="HastaneDBModel.tbl_CanceledAppointment" />
+          <FunctionImport Name="CanceledAppointmentDoctor" ReturnType="Collection(HastaneDBModel.CanceledAppointmentDoctor_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CanceledAppointmentPatient" ReturnType="Collection(HastaneDBModel.CanceledAppointmentPatient_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RemoveAppointmentDoctor">
+            <Parameter Name="AppointmentID" Mode="In" Type="Int32" />
+            <Parameter Name="doctorID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RemoveAppointmentPatient">
+            <Parameter Name="AppointmentID" Mode="In" Type="Int32" />
+            <Parameter Name="doctorID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AdminCancelledShow" ReturnType="Collection(HastaneDBModel.AdminCancelledShow_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DetailCanceledRandevu" ReturnType="Collection(HastaneDBModel.DetailCanceledRandevu_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DetailRandevu" ReturnType="Collection(HastaneDBModel.DetailRandevu_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="AppointmentAfter_Result">
           <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
@@ -528,6 +599,63 @@
           <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
           <Property Type="Decimal" Name="Maas" Nullable="true" Precision="19" />
+        </ComplexType>
+        <EntityType Name="tbl_CanceledAppointment">
+          <Key>
+            <PropertyRef Name="AppointmentID" />
+          </Key>
+          <Property Name="AppointmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppointmentDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AppointmentTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="PatientID" Type="Int32" Nullable="false" />
+          <Property Name="DoctorID" Type="Int32" Nullable="false" />
+          <Property Name="Annulment" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="CanceledAppointmentDoctor_Result">
+          <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+          <Property Type="Int32" Name="PatientID" Nullable="false" />
+          <Property Type="Int32" Name="DoctorID" Nullable="false" />
+          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+          <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="CanceledAppointmentPatient_Result">
+          <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+          <Property Type="Int32" Name="PatientID" Nullable="false" />
+          <Property Type="Int32" Name="DoctorID" Nullable="false" />
+          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+          <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="AdminCancelledShow_Result">
+          <Property Type="Int32" Name="AppointmentID" Nullable="false" />
+          <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+          <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+          <Property Type="Int32" Name="DoctorID" Nullable="false" />
+          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="DetailCanceledRandevu_Result">
+          <Property Type="Int32" Name="AppointmentID" Nullable="false" />
+          <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+          <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="DetailRandevu_Result">
+          <Property Type="Int32" Name="AppointmentID" Nullable="false" />
+          <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+          <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+          <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -620,6 +748,7 @@
           <EntitySetMapping Name="tbl_HospitalManager">
             <EntityTypeMapping TypeName="HastaneDBModel.tbl_HospitalManager">
               <MappingFragment StoreEntitySet="tbl_HospitalManager">
+                <ScalarProperty Name="HospitalID" ColumnName="HospitalID" />
                 <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
                 <ScalarProperty Name="Tckn" ColumnName="Tckn" />
                 <ScalarProperty Name="ManagerUserName" ColumnName="ManagerUserName" />
@@ -744,7 +873,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Register" FunctionName="HastaneDBModel.Store.Register" />
-          <FunctionImportMapping FunctionImportName="RemoveAppointment" FunctionName="HastaneDBModel.Store.RemoveAppointment" />
           <FunctionImportMapping FunctionImportName="SearchHospital" FunctionName="HastaneDBModel.Store.SearchHospital">
             <ResultMapping>
               <ComplexTypeMapping TypeName="HastaneDBModel.SearchHospital_Result">
@@ -775,6 +903,87 @@
                 <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
                 <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
                 <ScalarProperty Name="Maas" ColumnName="Maas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AdminAppointment" FunctionName="HastaneDBModel.Store.AdminAppointment" />
+          <EntitySetMapping Name="tbl_CanceledAppointment">
+            <EntityTypeMapping TypeName="HastaneDBModel.tbl_CanceledAppointment">
+              <MappingFragment StoreEntitySet="tbl_CanceledAppointment">
+                <ScalarProperty Name="Annulment" ColumnName="Annulment" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CanceledAppointmentDoctor" FunctionName="HastaneDBModel.Store.CanceledAppointmentDoctor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HastaneDBModel.CanceledAppointmentDoctor_Result">
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CanceledAppointmentPatient" FunctionName="HastaneDBModel.Store.CanceledAppointmentPatient">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HastaneDBModel.CanceledAppointmentPatient_Result">
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RemoveAppointmentDoctor" FunctionName="HastaneDBModel.Store.RemoveAppointmentDoctor" />
+          <FunctionImportMapping FunctionImportName="RemoveAppointmentPatient" FunctionName="HastaneDBModel.Store.RemoveAppointmentPatient" />
+          <FunctionImportMapping FunctionImportName="AdminCancelledShow" FunctionName="HastaneDBModel.Store.AdminCancelledShow">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HastaneDBModel.AdminCancelledShow_Result">
+                <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DetailCanceledRandevu" FunctionName="HastaneDBModel.Store.DetailCanceledRandevu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HastaneDBModel.DetailCanceledRandevu_Result">
+                <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DetailRandevu" FunctionName="HastaneDBModel.Store.DetailRandevu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HastaneDBModel.DetailRandevu_Result">
+                <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorSurname" ColumnName="DoctorSurname" />
+                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

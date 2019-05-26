@@ -13,7 +13,7 @@ namespace RRS.Controllers
     public class UpdateController : ApiController
     {
         [Route("Doctor")]
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage Put(tbl_Doctor doctor)
         {
             try
@@ -24,11 +24,15 @@ namespace RRS.Controllers
 
                     if (Doctor != null)
                     {
-                        Doctor = doctor;
-                        if( db.SaveChanges()>0)
+                       
+                        
+                        Doctor.DoctorName = doctor.DoctorName;
+                        Doctor.DoctorSurname = doctor.DoctorSurname;
+                        Doctor.DoctorPassword = doctor.DoctorPassword;
+
+                        if ( db.SaveChanges()>0)
                         {
                         return Request.CreateResponse(HttpStatusCode.OK, "Güncellendi");
-
                         }
                         else
                         {
@@ -48,7 +52,7 @@ namespace RRS.Controllers
             }
         }
         [Route("patient")]
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage Put(tbl_Patient patient)
         {
             try
@@ -59,7 +63,11 @@ namespace RRS.Controllers
 
                     if (Patient != null)
                     {
-                        Patient = patient;
+                        Patient.PaitentMail = patient.PaitentMail;
+                        Patient.PaitentName = patient.PaitentName;
+                        Patient.PaitentSurname = patient.PaitentSurname;
+                        
+                        Patient.PatientPassword = patient.PatientPassword;
                         if (db.SaveChanges() > 0)
                         {
                             return Request.CreateResponse(HttpStatusCode.OK, "Güncellendi");
@@ -83,7 +91,7 @@ namespace RRS.Controllers
             }
         }
         [Route("manager")]
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage Put(tbl_HospitalManager manager)
         {
             try
@@ -94,7 +102,10 @@ namespace RRS.Controllers
 
                     if (Manager != null)
                     {
-                        Manager = manager;
+                        Manager.ManagerName = manager.ManagerName;
+                        Manager.ManagerPassword = manager.ManagerPassword;
+                        Manager.ManagerSurname = manager.ManagerUserName;
+                        
                         if (db.SaveChanges() > 0)
                         {
                             return Request.CreateResponse(HttpStatusCode.OK, "Güncellendi");
@@ -120,18 +131,19 @@ namespace RRS.Controllers
 
 
         [Route("department")]
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage Put(tbl_Department  department)
         {
             try
             {
                 using (var db = new HastaneDBEntities())
                 {
-                    tbl_Department Manager = db.tbl_Department.FirstOrDefault(x => x.DepartmentID == department.DepartmentID);
+                    tbl_Department Deparment = db.tbl_Department.FirstOrDefault(x => x.DepartmentID == department.DepartmentID);
 
-                    if (Manager != null)
+                    if (Deparment != null)
                     {
-                        Manager = department;
+                        Deparment.DepartmentName = department.DepartmentName;
+                        
                         if (db.SaveChanges() > 0)
                         {
                             return Request.CreateResponse(HttpStatusCode.OK, "Güncellendi");
@@ -155,7 +167,7 @@ namespace RRS.Controllers
             }
         }
         [Route("hospital")]
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage Put(tbl_Hospital hospital)
         {
             try
@@ -166,7 +178,7 @@ namespace RRS.Controllers
 
                     if (Hospital != null)
                     {
-                        Hospital = hospital;
+                        Hospital.HospitalName = hospital.HospitalName;
                         if (db.SaveChanges() > 0)
                         {
                             return Request.CreateResponse(HttpStatusCode.OK, "Güncellendi");

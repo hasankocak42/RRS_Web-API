@@ -86,4 +86,3 @@ C:\Users\hasan\source\repos\RRS\RRS\obj\Debug\RRS.pdb
 C:\Users\hasan\source\repos\RRS\RRS\bin\System.Web.Cors.dll
 C:\Users\hasan\source\repos\RRS\RRS\bin\System.Web.Http.Cors.dll
 C:\Users\hasan\source\repos\RRS\RRS\bin\System.Web.Http.Cors.xml
-C:\Users\hasan\source\repos\RRS\RRS\obj\Debug\RRS.csprojAssemblyReference.cache

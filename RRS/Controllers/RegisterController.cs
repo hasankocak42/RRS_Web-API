@@ -177,7 +177,7 @@ namespace RRS.Controllers
             {
                 using (var db = new HastaneDBEntities())
             {
-                    tbl_Favorite Favori = db.tbl_Favorite.FirstOrDefault(x => x.DoctorID == favori.DoctorID || x.PatientID == favori.PatientID);
+                    tbl_Favorite Favori = db.tbl_Favorite.FirstOrDefault(x => x.DoctorID == favori.DoctorID && x.PatientID == favori.PatientID);
                 if (Favori != null)
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Bu hastanede bu departman bulunmakta bulunmakta");
@@ -198,6 +198,8 @@ namespace RRS.Controllers
 
 
         }
+
+        
 
     }
 

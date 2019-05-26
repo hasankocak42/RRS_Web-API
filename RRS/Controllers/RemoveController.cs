@@ -13,7 +13,7 @@ namespace RRS.Controllers
     public class RemoveController : ApiController
     {
         [Route("Doctor")]
-        [HttpDelete]
+        [HttpPost]
         public HttpResponseMessage Delete(İd id)
         {
             try
@@ -39,7 +39,7 @@ namespace RRS.Controllers
             }
         }
         [Route("Patient")]
-        [HttpDelete]
+        [HttpPost]
         public HttpResponseMessage DeletePatient(İd id)
         {
             try
@@ -65,7 +65,7 @@ namespace RRS.Controllers
             }
         }
         [Route("Manager")]
-        [HttpDelete]
+        [HttpPost]
         public HttpResponseMessage DeleteManager(İd id)
         {
             try
@@ -92,7 +92,7 @@ namespace RRS.Controllers
             }
         }
         [Route("Department")]
-        [HttpDelete]
+        [HttpPost]
         public HttpResponseMessage DeleteDepartment(İd id)
         {
             try
@@ -121,7 +121,7 @@ namespace RRS.Controllers
         }
 
         [Route("Hospital")]
-        [HttpDelete]
+        [HttpPost]
         public HttpResponseMessage DeleteHospital(İd id)
         {
             try
@@ -148,7 +148,7 @@ namespace RRS.Controllers
             }
         }
         [Route("departmentss")]
-        [HttpDelete]
+        [HttpPost]
         public HttpResponseMessage Delete(tbl_Departmentss departments)
         {
             try
@@ -176,7 +176,7 @@ namespace RRS.Controllers
 
         }
         [Route("favori")]
-        [HttpDelete]
+        [HttpPost]
         public HttpResponseMessage Delete(tbl_Favorite favori)
         {
             try
@@ -204,15 +204,15 @@ namespace RRS.Controllers
 
         }
 
-        [Route("RandevuSil")]
-        [HttpDelete]
+        [Route("RandevuSilHasta")]
+        [HttpPost]
         public HttpResponseMessage DeleteRandevu(randevu ran)
         {
             try
             {
                 using (var db = new HastaneDBEntities())
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, db.RemoveAppointment(ran.id, ran.Did));
+                    return Request.CreateResponse(HttpStatusCode.OK, db.RemoveAppointmentPatient(ran.id, ran.Did));
                 }
 
             }
@@ -223,6 +223,24 @@ namespace RRS.Controllers
             }
         }
 
+        [Route("RandevuSildoktor")]
+        [HttpPost]
+        public HttpResponseMessage DeleteRandevuDoctor(randevu ran)
+        {
+            try
+            {
+                using (var db = new HastaneDBEntities())
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, db.RemoveAppointmentDoctor(ran.id, ran.Did));
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+        }
 
 
         public class İd

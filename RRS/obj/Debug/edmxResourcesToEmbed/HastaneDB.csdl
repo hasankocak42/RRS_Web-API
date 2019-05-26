@@ -86,6 +86,7 @@
     <Property Name="ManagerPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ManagerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ManagerSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HospitalID" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="tbl_Hour">
     <Key>
@@ -221,7 +222,38 @@
     <FunctionImport Name="favoriList" ReturnType="Collection(HastaneDBModel.favoriList_Result)">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="MaasList" ReturnType="Collection(HastaneDBModel.MaasList_Result)" />
+    <FunctionImport Name="MaasList" ReturnType="Collection(HastaneDBModel.MaasList_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AdminAppointment">
+      <Parameter Name="DoctorId" Mode="In" Type="Int32" />
+      <Parameter Name="AppointmentDate" Mode="In" Type="DateTime" />
+      <Parameter Name="AppointmentTime" Mode="In" Type="Time" />
+    </FunctionImport>
+    <EntitySet Name="tbl_CanceledAppointment" EntityType="HastaneDBModel.tbl_CanceledAppointment" />
+    <FunctionImport Name="CanceledAppointmentDoctor" ReturnType="Collection(HastaneDBModel.CanceledAppointmentDoctor_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CanceledAppointmentPatient" ReturnType="Collection(HastaneDBModel.CanceledAppointmentPatient_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="RemoveAppointmentDoctor">
+      <Parameter Name="AppointmentID" Mode="In" Type="Int32" />
+      <Parameter Name="doctorID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="RemoveAppointmentPatient">
+      <Parameter Name="AppointmentID" Mode="In" Type="Int32" />
+      <Parameter Name="doctorID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AdminCancelledShow" ReturnType="Collection(HastaneDBModel.AdminCancelledShow_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DetailCanceledRandevu" ReturnType="Collection(HastaneDBModel.DetailCanceledRandevu_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DetailRandevu" ReturnType="Collection(HastaneDBModel.DetailRandevu_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="AppointmentAfter_Result">
     <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
@@ -298,5 +330,62 @@
     <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
     <Property Type="Decimal" Name="Maas" Nullable="true" Precision="19" />
+  </ComplexType>
+  <EntityType Name="tbl_CanceledAppointment">
+    <Key>
+      <PropertyRef Name="AppointmentID" />
+    </Key>
+    <Property Name="AppointmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AppointmentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AppointmentTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="DoctorID" Type="Int32" Nullable="false" />
+    <Property Name="Annulment" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <ComplexType Name="CanceledAppointmentDoctor_Result">
+    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+    <Property Type="Int32" Name="PatientID" Nullable="false" />
+    <Property Type="Int32" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+    <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="CanceledAppointmentPatient_Result">
+    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+    <Property Type="Int32" Name="PatientID" Nullable="false" />
+    <Property Type="Int32" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+    <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="AdminCancelledShow_Result">
+    <Property Type="Int32" Name="AppointmentID" Nullable="false" />
+    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+    <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+    <Property Type="Int32" Name="DoctorID" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="DetailCanceledRandevu_Result">
+    <Property Type="Int32" Name="AppointmentID" Nullable="false" />
+    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+    <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="DetailRandevu_Result">
+    <Property Type="Int32" Name="AppointmentID" Nullable="false" />
+    <Property Type="DateTime" Name="AppointmentDate" Nullable="false" />
+    <Property Type="Time" Name="AppointmentTime" Nullable="false" />
+    <Property Type="String" Name="DoctorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DoctorSurname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="HospitalName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
   </ComplexType>
 </Schema>

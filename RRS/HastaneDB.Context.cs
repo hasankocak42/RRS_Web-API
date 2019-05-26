@@ -38,6 +38,7 @@ namespace RRS
         public virtual DbSet<tbl_HospitalManager> tbl_HospitalManager { get; set; }
         public virtual DbSet<tbl_Hour> tbl_Hour { get; set; }
         public virtual DbSet<tbl_Patient> tbl_Patient { get; set; }
+        public virtual DbSet<tbl_CanceledAppointment> tbl_CanceledAppointment { get; set; }
     
         public virtual int addFavoriteDoctor(Nullable<int> patientID, Nullable<int> doctorID)
         {
@@ -332,9 +333,101 @@ namespace RRS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<favoriList_Result>("favoriList", idParameter);
         }
     
-        public virtual ObjectResult<MaasList_Result> MaasList()
+        public virtual ObjectResult<MaasList_Result> MaasList(Nullable<int> id)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MaasList_Result>("MaasList");
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MaasList_Result>("MaasList", idParameter);
+        }
+    
+        public virtual int AdminAppointment(Nullable<int> doctorId, Nullable<System.DateTime> appointmentDate, Nullable<System.TimeSpan> appointmentTime)
+        {
+            var doctorIdParameter = doctorId.HasValue ?
+                new ObjectParameter("DoctorId", doctorId) :
+                new ObjectParameter("DoctorId", typeof(int));
+    
+            var appointmentDateParameter = appointmentDate.HasValue ?
+                new ObjectParameter("AppointmentDate", appointmentDate) :
+                new ObjectParameter("AppointmentDate", typeof(System.DateTime));
+    
+            var appointmentTimeParameter = appointmentTime.HasValue ?
+                new ObjectParameter("AppointmentTime", appointmentTime) :
+                new ObjectParameter("AppointmentTime", typeof(System.TimeSpan));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminAppointment", doctorIdParameter, appointmentDateParameter, appointmentTimeParameter);
+        }
+    
+        public virtual ObjectResult<CanceledAppointmentDoctor_Result> CanceledAppointmentDoctor(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CanceledAppointmentDoctor_Result>("CanceledAppointmentDoctor", idParameter);
+        }
+    
+        public virtual ObjectResult<CanceledAppointmentPatient_Result> CanceledAppointmentPatient(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CanceledAppointmentPatient_Result>("CanceledAppointmentPatient", idParameter);
+        }
+    
+        public virtual int RemoveAppointmentDoctor(Nullable<int> appointmentID, Nullable<int> doctorID)
+        {
+            var appointmentIDParameter = appointmentID.HasValue ?
+                new ObjectParameter("AppointmentID", appointmentID) :
+                new ObjectParameter("AppointmentID", typeof(int));
+    
+            var doctorIDParameter = doctorID.HasValue ?
+                new ObjectParameter("doctorID", doctorID) :
+                new ObjectParameter("doctorID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RemoveAppointmentDoctor", appointmentIDParameter, doctorIDParameter);
+        }
+    
+        public virtual int RemoveAppointmentPatient(Nullable<int> appointmentID, Nullable<int> doctorID)
+        {
+            var appointmentIDParameter = appointmentID.HasValue ?
+                new ObjectParameter("AppointmentID", appointmentID) :
+                new ObjectParameter("AppointmentID", typeof(int));
+    
+            var doctorIDParameter = doctorID.HasValue ?
+                new ObjectParameter("doctorID", doctorID) :
+                new ObjectParameter("doctorID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RemoveAppointmentPatient", appointmentIDParameter, doctorIDParameter);
+        }
+    
+        public virtual ObjectResult<AdminCancelledShow_Result> AdminCancelledShow(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AdminCancelledShow_Result>("AdminCancelledShow", idParameter);
+        }
+    
+        public virtual ObjectResult<DetailCanceledRandevu_Result> DetailCanceledRandevu(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DetailCanceledRandevu_Result>("DetailCanceledRandevu", idParameter);
+        }
+    
+        public virtual ObjectResult<DetailRandevu_Result> DetailRandevu(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DetailRandevu_Result>("DetailRandevu", idParameter);
         }
     }
 }
